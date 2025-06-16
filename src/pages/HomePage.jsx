@@ -26,6 +26,12 @@ const HomePage = () => {
                     <div className="card-title fw-bold">{videogame.name}</div>
                     <div className="card-text">{`${videogame.price}€`}</div>
                     <div className="card-text">{videogame.publisher.name}</div>
+                    <div className="card-text">{videogame.genres[0].name}</div>
+                    <div className="card-text">
+                      {videogame.platforms.map((v) => (
+                        <span className="mr-2">{v.name}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}

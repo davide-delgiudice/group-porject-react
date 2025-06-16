@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <header>
-      <nav className="navbar bg-primary">
+      <nav className="navbar bg-success">
         <div className="container-fluid">
           <div className="navbar-brand">
             <div className="d-flex align-items-center">

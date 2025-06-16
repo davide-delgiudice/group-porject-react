@@ -1,3 +1,9 @@
 body {
   background-color: rgb(56, 56, 56);
 }
+
+.herospace{
+    background-image: url("./assets/herospace.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

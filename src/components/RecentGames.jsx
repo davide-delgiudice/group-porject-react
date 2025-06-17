@@ -1,0 +1,60 @@
+import axios from "axios";
+
+import { useEffect, useState } from "react";
+
+const RecentGames = () => {
+
+    const [videogames, setVideogames] = useState([]);
+
+    const fetchVideogames = () => {
+        axios.get('http://127.0.0.1:3000/api/videogames/').then((resp) => {
+            setVideogames(resp.data.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    useEffect(() => {
+        fetchVideogames();
+    }, []);
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-12">
+                    <div id="carouselExampleIndicators" className="carousel slide">
+                        <div className="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        </div>
+                        <div className="carousel-inner">
+                            {/* 
+                                dobbiamo selezionare gli ultimi 5 giochi usciti
+                                metodi: SORT()
+                                - filtrare i giochi in base alla data; -> condizione new Date etc
+                            */}
+                            {videogames.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)).slice(0, 5).map((videogame, index) => (
+                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                    <img src={videogame.image} className="d-block w-100" alt="..." />
+                                </div>             
+                            ))}
+                        </div>
+                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
+                        </button>
+                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default RecentGames

@@ -19,10 +19,11 @@ const RecentGames = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container mt-5">
             <div className="row">
                 <div className="col-12">
-                    <div id="carouselExampleIndicators" className="carousel slide">
+                    <h2 className="text-light">Ultime uscite &#8628;</h2>
+                    <div id="carouselExampleIndicators" className="carousel slide d-flex justify-content-center">
                         <div className="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -37,9 +38,9 @@ const RecentGames = () => {
                                 - filtrare i giochi in base alla data; -> condizione new Date etc
                             */}
                             {videogames.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)).slice(0, 5).map((videogame, index) => (
-                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                                    <img src={videogame.image} className="d-block w-100" alt="..." />
-                                </div>             
+                                <div key={`recentGames-${videogame.id}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                    <img src={videogame.image} className="d-block w-100" alt={videogame.name} />
+                                </div>
                             ))}
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

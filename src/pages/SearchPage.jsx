@@ -8,28 +8,25 @@ const SearchPage = () => {
 
     const [videogames, setVideogames] = useState([]);
     const [search, setSearch] = useState("");
+    const [filteredVideogames, setFilteredVideogames] = useState(videogames);
 
-    const handleSearch = (e) => {
-        setSearch(e.target.value)
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        fetchVideogames();
-    };
-
-    const fetchVideogames = () => {
-        const url = search === "" ? "http://localhost:3000/api/videogames/" : "http://localhost:3000/api/videogames?search=" + search;
-        axios.get(url).then((response) => {
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/videogames/").then((response) => {
             setVideogames(response.data.data);
+            console.log(response.data.data);
         })
             .catch((err) => {
                 console.log(err);
-            });
-    };
+            })
+    }, []);
 
-    useEffect(fetchVideogames, []);
+    useEffect(() => {
+        console.log(`search updated`)
+        const filterArray = videogames.filter((videogame) => {
+            return videogame.name.toLowerCase().includes(search.toLocaleLowerCase());
+        });
+        setFilteredVideogames(filterArray);
+    }, [search]);
 
     return (
         <>
@@ -39,9 +36,9 @@ const SearchPage = () => {
                     <Link className="btn btn-primary mb-4" to="/" >torna a Homepage</Link>
                     <div className="row">
                         <div className="col-12">
-                            <form onSubmit={handleSubmit}>
+                            <form>
                                 <div className="form-group">
-                                    <input type="text" className="form-control mb-1" placeholder='cerca' value={search} onChange={handleSearch} />
+                                    <input type="text" className="form-control mb-1" placeholder='cerca' value={search} onChange={(e) => { setSearch(e.target.value) }} />
                                     <button className="btn btn-main text-bg-danger" type='submit' >
                                         Ricerca
                                     </button>
@@ -56,7 +53,7 @@ const SearchPage = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="">
-                            {videogames.map((videogame) => (
+                            {filteredVideogames.map((videogame) => (
                                 <div key={`videogame-${videogame.id}`} className="card my-4">
                                     <div className="card-body">
                                         <div className="card-title fw-bold">{videogame.name}</div>

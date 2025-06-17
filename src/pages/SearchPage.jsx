@@ -13,6 +13,10 @@ const SearchPage = () => {
         setSearch(e.target.value)
     }
 
+    const handleSubmit = (e) => {
+        e.prevenetDefault()
+    }
+
     useEffect(() => {
         axios.get("http://localhost:3000/api/videogames/").then((response) => {
             setVideogames(response.data.data);
@@ -27,12 +31,14 @@ const SearchPage = () => {
                     <Link className="btn btn-primary mb-4" to="/" >torna a Homepage</Link>
                     <div className="row">
                         <div className="col-12">
-                            <div className="form-group">
-                                <input type="text" className="form-control mb-1" placeholder='cerca' value={search} onChange={handleSearch} />
-                                <button className="btn btn-main text-bg-danger" type='submit' >
-                                    Ricerca
-                                </button>
-                            </div>
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <input type="text" className="form-control mb-1" placeholder='cerca' value={search} onChange={handleSearch} />
+                                    <button className="btn btn-main text-bg-danger" type='submit' >
+                                        Ricerca
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -43,7 +49,7 @@ const SearchPage = () => {
                     <div className="col-12">
                         <div className="">
                             {videogames.map((videogame) => (
-                                <div key={videogame.id} className="card my-4">
+                                <div key={`videogame-${videogame.id}`} className="card my-4">
                                     <div className="card-body">
                                         <div className="card-title fw-bold">{videogame.name}</div>
                                         <div className="card-text">{`${videogame.price}€`}</div>

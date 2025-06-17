@@ -1,27 +1,63 @@
-import React from 'react'
-import HomePage from './HomePage'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import HomePage from './HomePage';
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const SearchPage = () => {
-    return (
-        <div>
-            <div className="container">
-                <h1>pagina di ricerca</h1>
-                <Link className="btn btn-primary mb-4" to="/" >torna a Homepage</Link>
-                <div className="row">
-                    <div className="col-12">
-                        <div className="form-group">
-                            <input type="text" className="form-control mb-1" placeholder='cerca' />
-                            <button className="btn btn-main text-bg-danger" type='submit' >
-                                Ricerca
-                            </button>
-                        </div>
 
+    const [videogames, setVideogames] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/api/videogames/").then((response) => {
+            setVideogames(response.data.data);
+        });
+    }, []);
+
+    return (
+        <>
+            <div>
+                <div className="container">
+                    <h1>pagina di ricerca</h1>
+                    <Link className="btn btn-primary mb-4" to="/" >torna a Homepage</Link>
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="form-group">
+                                <input type="text" className="form-control mb-1" placeholder='cerca' />
+                                <button className="btn btn-main text-bg-danger" type='submit' >
+                                    Ricerca
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div>
+
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="">
+                            {videogames.map((videogame) => (
+                                <div key={videogame.id} className="card my-4">
+                                    <div className="card-body">
+                                        <div className="card-title fw-bold">{videogame.name}</div>
+                                        <div className="card-text">{`${videogame.price}€`}</div>
+                                        <div className="card-text">{videogame.publisher.name}</div>
+                                        <div className="card-text">{videogame.genres[0].name}</div>
+                                        <div className="card-text">
+                                            {videogame.platforms.map((v) => (
+                                                <span className="mr-2">{v.name}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </>
     )
 }
 

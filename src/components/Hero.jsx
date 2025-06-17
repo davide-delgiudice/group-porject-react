@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   return (
     <div className="herospace">
@@ -9,7 +11,7 @@ const Hero = () => {
               <h2 className="fw-bold text-light">LA TUA STORIA</h2>
               <p className="mt-3 text-light">Boogaming è dove puoi trovare i tuoi giochi preferiti, ad un prezzo vantaggioso!</p>
             </div>
-            <div className="btn btn-color text-light fw-bold">Dai un'occhiata</div>
+            <Link className="btn btn-color text-light fw-bold" to="/SearchPage">Dai un'occhiata</Link>
           </div>
         </div>
       </div>

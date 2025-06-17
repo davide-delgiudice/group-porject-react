@@ -7,6 +7,11 @@ import axios from "axios";
 const SearchPage = () => {
 
     const [videogames, setVideogames] = useState([]);
+    const [search, setSearch] = useState("");
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/videogames/").then((response) => {
@@ -23,7 +28,7 @@ const SearchPage = () => {
                     <div className="row">
                         <div className="col-12">
                             <div className="form-group">
-                                <input type="text" className="form-control mb-1" placeholder='cerca' />
+                                <input type="text" className="form-control mb-1" placeholder='cerca' value={search} onChange={handleSearch} />
                                 <button className="btn btn-main text-bg-danger" type='submit' >
                                     Ricerca
                                 </button>

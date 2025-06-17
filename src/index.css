@@ -5,7 +5,41 @@
 }
 
 body {
-  background-color: rgb(56, 56, 56);
+  background-color: #1A2730;
+}
+
+header{
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.navbar{
+  background-color: #424048;
+  padding: 0px;
+}
+
+.logo-design{
+  width: 80px;
+}
+
+.btn-color{
+  background-color: #E95D2C;
+}
+
+.herospace{
+    background-image: url("./assets/herospace.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #1A2730;
+}
+
+.carousel-inner{
+  border-radius: 10px;
+}
+
+.publisher-videogame-text{
+  font-size: 15px;
 }
 
 main{

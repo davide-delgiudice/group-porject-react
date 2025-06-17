@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header>
-      <nav className="navbar bg-primary">
+      <nav className="navbar">
         <div className="container-fluid">
           <div className="navbar-brand">
             <div className="d-flex align-items-center">
-              {/* logo */}
-              <span className="p-2 text-white fs-3">BOOGAMING</span>
-              <Link className="btn btn-primary text-bg-info" to="/SearchPages/" >vai a pagina di ricerca</Link>
+              <img src="./src/assets/logo.png" alt="" className="logo-design"/>
+              <span className="nav p-2 text-white fs-3">BOOGAMING</span>
             </div>
           </div>
         </div>

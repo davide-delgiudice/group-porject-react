@@ -1,12 +1,12 @@
 const Header = () => {
   return (
     <header>
-      <nav className="navbar bg-success">
+      <nav className="navbar">
         <div className="container-fluid">
           <div className="navbar-brand">
             <div className="d-flex align-items-center">
-              {/* logo */}
-              <span className="p-2 text-white fs-3">BOOGAMING</span>
+              <img src="./src/assets/logo.png" alt="" className="logo-design"/>
+              <span className="nav p-2 text-white fs-3">BOOGAMING</span>
             </div>
           </div>
         </div>

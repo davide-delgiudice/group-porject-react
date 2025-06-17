@@ -21,12 +21,15 @@ const SearchPage = () => {
     }, []);
 
     useEffect(() => {
-        console.log(`search updated`)
-        const filterArray = videogames.filter((videogame) => {
-            return videogame.name.toLowerCase().includes(search.toLocaleLowerCase());
-        });
-        setFilteredVideogames(filterArray);
-    }, [search]);
+        if (search === "") {
+            setFilteredVideogames(videogames);
+        } else {
+            const filterArray = videogames.filter((videogame) =>
+                videogame.name.toLowerCase().includes(search.toLowerCase())
+            );
+            setFilteredVideogames(filterArray);
+        }
+    }, [search, videogames]);
 
     return (
         <>

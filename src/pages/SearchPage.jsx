@@ -11,17 +11,25 @@ const SearchPage = () => {
 
     const handleSearch = (e) => {
         setSearch(e.target.value)
-    }
+    };
 
     const handleSubmit = (e) => {
-        e.prevenetDefault()
-    }
+        e.preventDefault()
 
-    useEffect(() => {
+        fetchVideogames();
+    };
+
+    const fetchVideogames = () => {
+
         axios.get("http://localhost:3000/api/videogames/").then((response) => {
             setVideogames(response.data.data);
-        });
-    }, []);
+        })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    useEffect(fetchVideogames, []);
 
     return (
         <>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Hero from "../components/Hero";
+import RecentGames from "../components/RecentGames";
+import PublisherSection from "../components/PublisherSection";
 import axios from "axios";
 
 const HomePage = () => {
@@ -15,8 +17,9 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-
-      <div className="container">
+      <RecentGames />
+      <PublisherSection />
+      {/* <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="">
@@ -38,7 +41,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

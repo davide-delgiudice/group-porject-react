@@ -20,8 +20,8 @@ const SearchPage = () => {
     };
 
     const fetchVideogames = () => {
-
-        axios.get("http://localhost:3000/api/videogames/").then((response) => {
+        const url = search === "" ? "http://localhost:3000/api/videogames/" : "http://localhost:3000/api/videogames?search=" + search;
+        axios.get(url).then((response) => {
             setVideogames(response.data.data);
         })
             .catch((err) => {

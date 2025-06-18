@@ -15,7 +15,7 @@ const ProductPage = () => {
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:3000/api/videogames/${id}`).then((res) => {
-            setProduct(res.data)
+            setProduct(res.data.data[0])
         })
             .catch(err => {
                 console.log("Errore fetch:", err)

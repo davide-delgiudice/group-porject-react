@@ -3,7 +3,6 @@ import Hero from "../components/Hero";
 import RecentGames from "../components/RecentGames";
 import PublisherSection from "../components/PublisherSection";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [videogames, setVideogames] = useState([]);
@@ -11,7 +10,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/videogames/").then((response) => {
-      setVideogames(response.data.data);
+      setVideogames(response.data);
     });
   }, []);
 

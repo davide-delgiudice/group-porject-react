@@ -8,7 +8,7 @@ const RecentGames = () => {
 
     const fetchVideogames = () => {
         axios.get('http://127.0.0.1:3000/api/videogames/').then((resp) => {
-            setVideogames(resp.data.data);
+            setVideogames(resp.data);
         }).catch((err) => {
             console.log(err);
         });

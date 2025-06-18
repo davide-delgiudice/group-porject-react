@@ -11,8 +11,8 @@ const SearchPage = () => {
 
     useEffect(() => {
         axios.get("http://localhost:3000/api/videogames/").then((response) => {
-            setVideogames(response.data.data);
-            console.log(response.data.data);
+            setVideogames(response.data);
+            console.log(response.data);
         })
             .catch((err) => {
                 console.log(err);

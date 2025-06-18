@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const SearchPage = () => {
 
@@ -50,24 +51,26 @@ const SearchPage = () => {
                     <div className="col-12">
                         <div className="">
                             {filteredVideogames.map((videogame) => (
-                                <div key={`videogame-${videogame.id}`} className="card-instant">
-                                    <img
-                                        src={videogame.image}
-                                        alt={videogame.name}
-                                        className="card-instant-img"
-                                    />
-                                    <div className="card-instant-body">
-                                        <div className="card-instant-title">{videogame.name}</div>
-                                        <div className="card-instant-price">{videogame.price}€</div>
-                                        <div className="card-instant-publisher">{videogame.publisher.name}</div>
-                                        <div className="card-instant-badges">
-                                            <span className="badge-genre">{videogame.genres[0]?.name}</span>
-                                            {videogame.platforms.map((v, idx) => (
-                                                <span key={idx} className="badge-platform">{v.name}</span>
-                                            ))}
+                                <Link key={`videogame-${videogame.id}`} to={`/videogames/${videogame.id}`}>
+                                    <div  className="card-instant">
+                                        <img
+                                            src={videogame.image}
+                                            alt={videogame.name}
+                                            className="card-instant-img"
+                                        />
+                                        <div className="card-instant-body">
+                                            <div className="card-instant-title">{videogame.name}</div>
+                                            <div className="card-instant-price">{videogame.price}€</div>
+                                            <div className="card-instant-publisher">{videogame.publisher.name}</div>
+                                            <div className="card-instant-badges">
+                                                <span className="badge-genre">{videogame.genres[0]?.name}</span>
+                                                {videogame.platforms.map((v, idx) => (
+                                                    <span key={idx} className="badge-platform">{v.name}</span>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>

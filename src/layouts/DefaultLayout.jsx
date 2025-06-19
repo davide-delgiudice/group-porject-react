@@ -5,8 +5,13 @@ const DefaultLayout = () => {
   return (
     <>
       <Header />
-      <main>
-        <Outlet />
+      <main className="d-flex justify-content-between">
+        <div className="w-100">
+          <Outlet />
+        </div>
+        <div className="">
+          
+        </div>
       </main>
     </>
   );

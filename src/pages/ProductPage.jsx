@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import AddCart from '../components/AddCart'
 
 
 const ProductPage = () => {
@@ -9,20 +10,15 @@ const ProductPage = () => {
     const { id } = useParams()
 
     const [product, setProduct] = useState({})
-    // const [publisher, setPublisher] = useState({})
-    // const [genre, setGenre] = useState({})
-    // const [platform, setPlatform] = useState({})
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:3000/api/videogames/${id}`).then((res) => {
-            setProduct(res.data.data[0])
+            setProduct(res.data)
         })
             .catch(err => {
                 console.log("Errore fetch:", err)
             })
     }, [])
-
-    console.log(product)
 
     return (
         <>
@@ -49,10 +45,13 @@ const ProductPage = () => {
                             <span key={pub.id}>{pub.name}</span>
                         ))}
                     </p>
+                    <AddCart product={product} />
                 </div>
             </div>
         </>
     )
+
 }
+
 
 export default ProductPage

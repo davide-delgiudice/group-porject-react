@@ -10,7 +10,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/videogames/").then((response) => {
-      setVideogames(response.data);
+      setVideogames(response.data.data);
     });
   }, []);
 

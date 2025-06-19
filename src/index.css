@@ -186,101 +186,71 @@ main {
 }
 
 /* /////////////////////////////////
-/////////BUTTONSEARCHPAGE//////// */
+/////////SELECT-SEARCHPAGE//////// */
 
-.btn-group {
+.search-sort-form {
   display: flex;
-  gap: 12px;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 2rem 0;
 }
 
-.custom-btn-pc {
+.select-group {
   position: relative;
-  padding: 10px 20px;
+  width: 200px;
+}
+
+.select-gaming {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 2px solid #2a2a72;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
+  color: #fff;
+  font-size: 1rem;
   font-weight: 600;
-  color: #444;
-  border: 2px solid oklab(56.677% 0.19408 0.10341);
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-  box-shadow: 0 2px 6px rgb(0 123 255 / 0.2);
+  outline: none;
+  appearance: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(42, 42, 114, 0.15);
 }
 
-.custom-btn-playstation {
-  position: relative;
-  padding: 10px 20px;
+.select-gaming:focus {
+  border-color: #00ffe7;
+  box-shadow: 0 0 0 2px #00ffe766;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  pointer-events: none;
+  color: #00ffe7;
+  font-size: 1.5rem;
+  transform: translateY(-50%);
+}
+
+.select-gaming option {
+  color: #222;
+  background: #fff;
   font-weight: 600;
-  color: #444;
-  border: 2px solid hwb(239 17% 0%);
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-  box-shadow: 0 2px 6px rgb(0 123 255 / 0.2);
+  font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
 }
 
-.custom-btn-xbox {
-  position: relative;
-  padding: 10px 20px;
+.select-gaming option:checked {
+  background: #00ffe7;
+  color: #232526;
+}
+
+.select-gaming option {
+  color: #222;
+  background: #fff;
   font-weight: 600;
-  color: #444;
-  border: 2px solid hwb(134 6% 29%);
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-  box-shadow: 0 2px 6px rgb(0 123 255 / 0.2);
 }
 
-.custom-btn-nintendo {
-  position: relative;
-  padding: 10px 20px;
-  font-weight: 600;
-  color: #444;
-  border: 2px solid hwb(0 0% 24%);
-  border-radius: 6px;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
-  box-shadow: 0 2px 6px rgb(0 123 255 / 0.2);
-}
 
-.btn-check:checked+.custom-btn-pc {
-  background-color: hwb(0 27% 4%);
-  color: white;
-  box-shadow: 0 4px 12px #ee2d2d;
-  border-color: hsl(0, 78%, 51%);
-}
-
-.btn-check:checked+.custom-btn-playstation {
-  background-color: hsl(223, 77%, 51%);
-  color: white;
-  box-shadow: 0 4px 12px rgb(0, 64, 255);
-  border-color: hsl(222, 99%, 40%);
-}
-
-.btn-check:checked+.custom-btn-xbox {
-  background-color: hwb(136 11% 27%);
-  color: white;
-  box-shadow: 0 4px 12px #08bb08;
-  border-color: hsl(114, 100%, 35%);
-}
-
-.btn-check:checked+.custom-btn-nintendo {
-  background-color: hsl(0, 100%, 38%);
-  color: white;
-  box-shadow: 0 4px 12px #c90000;
-  border-color: hsl(0, 100%, 35%);
-}
-
-.custom-btn:active {
-  transform: scale(0.95);
-}
-
-.btn-rounded {
-  border-radius: 150px / 75px;
+.select-gaming option:checked {
+  background: #00ffe7;
+  color: #232526;
 }

@@ -3,17 +3,36 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { end } from '@popperjs/core';
 
 const SearchPage = () => {
 
     const location = useLocation();
     const [videogames, setVideogames] = useState([]);
+    const [sort, setSort] = useState("");
+    const [order, setOrder] = useState("");
     const query = location.state?.search;
 
 
+    const endpoint = "http://127.0.0.1:3000/api/videogames"
+
+    const handleSort = (e) => {
+        setSort(e.target.value);
+    };
+    const handleOrder = (e) => {
+        setOrder(e.target.value);
+    };
+
     useEffect(() => {
         if (query) {
-            axios.get(`http://127.0.0.1:3000/api/videogames/search?q=${encodeURIComponent(query)}`).then((response) => {
+            axios.get(endpoint, {
+                params: {
+                    q: query,
+                    sort: sort,
+                    order: order
+                }
+
+            }).then((response) => {
                 setVideogames(response.data);
                 console.log(response.data);
             })
@@ -21,23 +40,29 @@ const SearchPage = () => {
                     console.log(err);
                 })
         }
-    }, [query]);
+    }, [query, sort, order]);
     return (
 
         <>
-            <div className="btn-group m-3" role="group" aria-label="Basic checkbox toggle button group">
-                <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off" />
-                <label className="btn btn-outline-primary custom-btn-pc" htmlFor="btncheck1">PC</label>
-
-                <input type="checkbox" className="btn-check" id="btncheck2" autoComplete="off" />
-                <label className="btn btn-outline-primary custom-btn-playstation" htmlFor="btncheck2">PlayStation</label>
-
-                <input type="checkbox" className="btn-check" id="btncheck3" autoComplete="off" />
-                <label className="btn btn-outline-primary custom-btn-xbox" htmlFor="btncheck3">Xbox</label>
-
-                <input type="checkbox" className="btn-check" id="btncheck4" autoComplete="off" />
-                <label className="btn btn-outline-primary custom-btn-nintendo" htmlFor="btncheck4">Nintendo</label>
-            </div>
+            <form className="search-sort-form ms-3">
+                <div className="select-group">
+                    <select className="select-gaming" name="select-option" id="select-option" onChange={handleSort} defaultValue="">
+                        <option value="" disabled>Seleziona per</option>
+                        <option value="name">Nome</option>
+                        <option value="release">Data di uscita</option>
+                        <option value="price">Prezzo</option>
+                    </select>
+                    <span className="select-arrow">&#9662;</span>
+                </div>
+                <div className="select-group">
+                    <select className="select-gaming" name="select-order" id="select-order" onChange={handleOrder} defaultValue="">
+                        <option value="" disabled>Ordina per</option>
+                        <option value="asc">Crescente</option>
+                        <option value="desc">Decrescente</option>
+                    </select>
+                    <span className="select-arrow">&#9662;</span>
+                </div>
+            </form>
 
             <div className="container">
                 <div className="row">
@@ -49,7 +74,7 @@ const SearchPage = () => {
                                     <Link to={`/videogames/${videogame.id}`}>
                                         <div className="card-instant">
                                             <img
-                                                src={`http://localhost:3000/images/videogames/${videogame.image}`}
+                                                src={videogame.image}
                                                 alt={videogame.name}
                                                 className="card-instant-img"
                                             />

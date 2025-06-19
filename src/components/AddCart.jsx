@@ -1,31 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useCart } from '../contexts/CartContext'
 
-const AddCart = ({product}) => {
-    
-    let cartItem = null
+const AddCart = ({ product }) => {
+
+    const { addToCart } = useCart()
+    const [showAlert, setShowAlert] = useState(false)
 
     const addCart = (e) => {
         e.preventDefault()
-        if (product.id) {
-            localStorage.setItem(`Cart-${product.id}`, JSON.stringify(product))
-            console.log("Aggiunto al carrello")
-            console.log(cartItem)
-        }
-    }
-    
+        addToCart(product)
+        setShowAlert(true)
 
-    if (product.id) {
-        const cartItemString = localStorage.getItem(`Cart-${product.id}`)
-        if (cartItemString) {
-            cartItem = JSON.parse(cartItemString)
-            
-        }
-
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 2000)
     }
 
-  return (
-     <button type='button' onClick={addCart}>Aggiungi al carrello</button>
-  )
+    return (
+        <>
+            <button type='button' onClick={addCart}>Aggiungi al carrello</button>
+            {showAlert && (<div className='alert alert-success'>Aggiunto al carrello</div>)}
+        </>
+    )
 }
 
 export default AddCart

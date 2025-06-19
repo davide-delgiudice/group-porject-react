@@ -23,18 +23,18 @@ const ShoppingCart = () => {
             <h1>Carrello</h1>
             <div className='mb-3'>
                 {cartItems.map((product) => (
-                    <div key={product.id}>
-                        <img src={product.image} className='img-fluid my-2' alt="" />
-                        <div className='d-flex justify-content-between'>
+                    <div key={product.id} className='my-3'>
+                        <img src={product.image} className='img-fluid my-1' alt="" />
+                        <div className='d-flex justify-content-between row'>
                             <span>Titolo: {product.name}</span>
                             <span>Prezzo: {product.price}&euro;</span>
-                            <button type='button' onClick={() => removeProduct(product)}>Rimuovi Prodotto</button>
                         </div>
+                        <button className='btn btn-danger p-0' type='button' onClick={() => removeProduct(product)}>Rimuovi Prodotto</button>
                     </div>
                 ))}
             </div>
             <h3>Spesa Totale: {finalPrice}&euro;</h3>
-            <button type='button' onClick={clearCart}>Svuota Carrello</button>
+            <button type='button' className='btn btn-danger' onClick={clearCart}>Svuota Carrello</button>
         </>
     )
 }

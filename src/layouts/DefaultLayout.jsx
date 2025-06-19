@@ -1,8 +1,14 @@
 import { Outlet } from "react-router";
 import Header from "../components/Header";
 import ShoppingCart from "../components/ShoppingCart";
+import { useEffect } from "react";
+import { useCart } from "../contexts/CartContext";
+
 
 const DefaultLayout = () => {
+
+  const { cartItems } = useCart()
+
   return (
     <>
       <Header />
@@ -10,7 +16,7 @@ const DefaultLayout = () => {
         <div className="col-10">
           <Outlet />
         </div>
-        <div className="col-2 p-3">
+        <div className={`col-2 p-3 ${cartItems.length === 0 ? 'd-none' : ''}`}>
           <ShoppingCart />
         </div>
       </main>

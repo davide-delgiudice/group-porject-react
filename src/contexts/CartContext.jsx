@@ -6,6 +6,7 @@ const CartContext = createContext()
 export const CartProvider = ({ children }) => {
 
     const [cartProducts, setCartProducts] = useState([])
+    const [showAlert, setShowAlert] = useState(false)
 
     const loadCart = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || {}
@@ -24,12 +25,17 @@ export const CartProvider = ({ children }) => {
 
         localStorage.setItem("cart", JSON.stringify(cart))
         loadCart()
+        setShowAlert(true)
+
+        setTimeout(() => {
+            setShowAlert(false)
+        }, 2000)
     }
 
     const removeFromCart = (product) => {
         const cart = JSON.parse(localStorage.getItem("cart")) || {}
 
-        if(!cart[product.id]) return
+        if (!cart[product.id]) return
 
         if (cart[product.id].quantity > 1) {
             cart[product.id].quantity -= 1
@@ -52,7 +58,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart }}>
+        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart, showAlert }}>
             {children}
         </CartContext.Provider>
     )

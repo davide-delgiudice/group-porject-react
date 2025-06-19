@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,47 +8,47 @@ body {
   background-color: #1A2730;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-header{
+header {
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
-.navbar{
+.navbar {
   background-color: #424048;
   padding: 0px;
 }
 
-.logo-design{
+.logo-design {
   width: 80px;
 }
 
-.btn-color{
+.btn-color {
   background-color: #E95D2C;
 }
 
-.herospace{
-    background-image: url("./assets/herospace.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #1A2730;
+.herospace {
+  background-image: url("./assets/herospace.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #1A2730;
 }
 
-.carousel-inner{
+.carousel-inner {
   border-radius: 10px;
 }
 
-.publisher-videogame-text{
+.publisher-videogame-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-main{
+main {
   color: white;
 }
 
@@ -148,6 +148,7 @@ main{
   margin-bottom: 8px;
   color: #fff;
 }
+
 .card-instant-price {
   font-size: 1.25rem;
   font-weight: 700;
@@ -182,4 +183,8 @@ main{
   color: #3ed24b;
   background: #23272b;
   border: 1px solid #3ed24b;
+}
+
+.global-alert {
+  pointer-events: none;
 }

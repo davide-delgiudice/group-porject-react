@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import AddCart from '../components/AddCart';
 
 const SearchPage = () => {
 
@@ -68,6 +69,7 @@ const SearchPage = () => {
                                                     <span key={idx} className="badge-platform">{v.name}</span>
                                                 ))}
                                             </div>
+                                            <AddCart product={videogame}/>
                                         </div>
                                     </div>
                                 </Link>

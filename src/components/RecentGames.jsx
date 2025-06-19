@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const RecentGames = () => {
@@ -22,7 +23,7 @@ const RecentGames = () => {
         <div className="container mt-5">
             <div className="row">
                 <div className="col-12">
-                    <h2 className="text-light">Ultime uscite &#8628;</h2>
+                    <h2 className="text-light">Ultime uscite &#11167;</h2>
                     <div id="carouselExampleIndicators" className="carousel slide d-flex justify-content-center">
                         <div className="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -39,7 +40,9 @@ const RecentGames = () => {
                             */}
                             {videogames.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)).slice(0, 5).map((videogame, index) => (
                                 <div key={`recentGames-${videogame.id}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                                    <img src={videogame.image} className="d-block w-100" alt={videogame.name} />
+                                    <Link to={`/videogames/${videogame.id}`}>
+                                        <img src={videogame.image} className="d-block w-100" alt={videogame.name} />
+                                    </Link>
                                 </div>
                             ))}
                         </div>

@@ -7,7 +7,7 @@ import { useCart } from "../contexts/CartContext";
 
 const DefaultLayout = () => {
 
-  const { cartItems } = useCart()
+  const { cartProducts } = useCart()
 
   return (
     <>
@@ -16,7 +16,7 @@ const DefaultLayout = () => {
         <div className="w-100">
           <Outlet />
         </div>
-        <div className={`col-2 p-3 ${cartItems.length === 0 ? 'd-none' : ''}`}>
+        <div className={`col-2 p-3 ${cartProducts.length === 0 ? 'd-none' : ''}`}>
           <ShoppingCart />
         </div>
       </main>

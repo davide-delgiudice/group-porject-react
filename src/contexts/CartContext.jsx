@@ -5,32 +5,44 @@ const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
 
-    const [cartItems, setCartItems] = useState([])
+    const [cartProducts, setCartProducts] = useState([])
 
     const loadCart = () => {
-
-        const cart = []
-
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i)
-            try {
-                const parsedItem = JSON.parse(localStorage.getItem(key))
-                cart.push(parsedItem)
-            } catch {
-                cart.push(JSON.parse(localStorage.getItem(key)))
-            }
-        }
-        setCartItems(cart)
+        const storedCart = JSON.parse(localStorage.getItem("cart")) || {}
+        const products = Object.values(storedCart)
+        setCartProducts(products)
     }
 
     const addToCart = (product) => {
-        if (!product?.id) return
-        localStorage.setItem(`Cart-${product.id}`, JSON.stringify(product))
+        const cart = JSON.parse(localStorage.getItem("cart")) || {}
+
+        if (cart[product.id]) {
+            cart[product.id].quantity += 1
+        } else {
+            cart[product.id] = { ...product, quantity: 1 }
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart))
+        loadCart()
+    }
+
+    const removeFromCart = (product) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || {}
+
+        if(!cart[product.id]) return
+
+        if (cart[product.id].quantity > 1) {
+            cart[product.id].quantity -= 1
+        } else {
+            delete cart[product.id]
+        }
+        localStorage.setItem("cart", JSON.stringify(cart))
         loadCart()
     }
 
     const clearCart = () => {
-        localStorage.clear()
+        localStorage.removeItem("cart")
+        setCartProducts([]);
         loadCart()
     }
 
@@ -40,7 +52,7 @@ export const CartProvider = ({ children }) => {
 
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, loadCart, clearCart }}>
+        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     )

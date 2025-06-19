@@ -18,7 +18,7 @@ const AddCart = ({ product }) => {
 
     return (
         <>
-            <button type='button' onClick={addCart}>Aggiungi al carrello</button>
+            <button type='button' className='btn btn-success' onClick={addCart}>Aggiungi al carrello</button>
             {showAlert && (<div className='alert alert-success'>Aggiunto al carrello</div>)}
         </>
     )

@@ -13,7 +13,7 @@ const DefaultLayout = () => {
     <>
       <Header />
       <main className="d-flex justify-content-between">
-        <div className="col-10">
+        <div className="w-100">
           <Outlet />
         </div>
         <div className={`col-2 p-3 ${cartItems.length === 0 ? 'd-none' : ''}`}>

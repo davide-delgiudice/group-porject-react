@@ -188,3 +188,7 @@ main {
 .global-alert {
   pointer-events: none;
 }
+
+.scrollable {
+  height: 72vh;
+}

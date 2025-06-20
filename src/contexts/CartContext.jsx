@@ -52,13 +52,23 @@ export const CartProvider = ({ children }) => {
         loadCart()
     }
 
+    const removeSingleProduct = (product) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || {}
+
+         if (!cart[product.id]) return
+
+         delete cart[product.id]
+         localStorage.setItem("cart", JSON.stringify(cart))
+         loadCart()
+    }
+
     useEffect(() => {
         loadCart()
     }, [])
 
 
     return (
-        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart, showAlert }}>
+        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart, showAlert, removeSingleProduct }}>
             {children}
         </CartContext.Provider>
     )

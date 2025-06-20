@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AddCart from '../components/AddCart';
 import { useLocation } from 'react-router-dom';
 import { end } from '@popperjs/core';
+import { useCart } from '../contexts/CartContext';
 
 const SearchPage = () => {
 
@@ -14,6 +15,8 @@ const SearchPage = () => {
     const [order, setOrder] = useState("");
     const queryParams = new URLSearchParams(location)
     const query = queryParams.get("q") || "";
+    const { cartProducts, removeFromCart, addToCart } = useCart()
+    const cart = JSON.parse(localStorage.getItem("cart")) || {}
 
 
     const endpoint = "http://localhost:3000/api/videogames/"
@@ -88,7 +91,23 @@ const SearchPage = () => {
                                                         <span key={idx} className="badge-platform">{v.name}</span>
                                                     ))}
                                                 </div>
-                                                <AddCart product={videogame} />
+                                                {(cart[videogame.id]?.quantity || 0) > 0 ? (
+                                                    <div className='d-flex'>
+                                                        <p>Quantità: </p>
+                                                        <div>
+                                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); removeFromCart(videogame) }}>-</button>
+                                                        </div>
+                                                        <p>{cart[videogame.id]?.quantity}</p>
+                                                        <div>
+                                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); addToCart(videogame) }}>+</button>
+                                                        </div>
+                                                    </div>
+
+                                                ) : (
+                                                    <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
+                                                        <AddCart product={videogame} />
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </Link>

@@ -197,11 +197,10 @@ main {
   pointer-events: none;
 }
 
-<<<<<<< HEAD
 .scrollable {
-  height: 72vh;
+  height: 71vh;
 }
-=======
+
 /* /////////////////////////////////
 /////////SELECT-SEARCHPAGE//////// */
 
@@ -270,4 +269,3 @@ main {
   background: #00ffe7;
   color: #232526;
 }
->>>>>>> 092b05f201289f990f9dc46ea706276facd5a1fd

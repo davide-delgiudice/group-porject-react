@@ -24,12 +24,12 @@ export const CartProvider = ({ children }) => {
         }
 
         localStorage.setItem("cart", JSON.stringify(cart))
-        loadCart()
         setShowAlert(true)
 
         setTimeout(() => {
             setShowAlert(false)
         }, 2000)
+        loadCart()
     }
 
     const removeFromCart = (product) => {
@@ -55,11 +55,11 @@ export const CartProvider = ({ children }) => {
     const removeSingleProduct = (product) => {
         const cart = JSON.parse(localStorage.getItem("cart")) || {}
 
-         if (!cart[product.id]) return
+        if (!cart[product.id]) return
 
-         delete cart[product.id]
-         localStorage.setItem("cart", JSON.stringify(cart))
-         loadCart()
+        delete cart[product.id]
+        localStorage.setItem("cart", JSON.stringify(cart))
+        loadCart()
     }
 
     useEffect(() => {

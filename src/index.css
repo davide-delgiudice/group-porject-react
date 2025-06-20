@@ -8,9 +8,11 @@ body {
   background-color: #1A2730;
 }
 
+
 a {
   text-decoration: none;
 }
+
 
 header {
   position: sticky;
@@ -18,14 +20,17 @@ header {
   z-index: 5;
 }
 
+
 .navbar {
   background-color: #424048;
   padding: 0px;
 }
 
+
 .logo-design {
   width: 80px;
 }
+
 
 .btn-color {
   background-color: #E95D2C;
@@ -38,15 +43,18 @@ header {
   background-color: #1A2730;
 }
 
+
 .carousel-inner {
   border-radius: 10px;
 }
+
 
 .publisher-videogame-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 
 main {
   color: white;
@@ -187,4 +195,73 @@ main {
 
 .global-alert {
   pointer-events: none;
+}
+
+/* /////////////////////////////////
+/////////SELECT-SEARCHPAGE//////// */
+
+.search-sort-form {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.select-group {
+  position: relative;
+  width: 200px;
+}
+
+.select-gaming {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 2px solid #2a2a72;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+  appearance: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(42, 42, 114, 0.15);
+}
+
+.select-gaming:focus {
+  border-color: #00ffe7;
+  box-shadow: 0 0 0 2px #00ffe766;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  pointer-events: none;
+  color: #00ffe7;
+  font-size: 1.5rem;
+  transform: translateY(-50%);
+}
+
+.select-gaming option {
+  color: #222;
+  background: #fff;
+  font-weight: 600;
+}
+
+.select-gaming option:checked {
+  background: #00ffe7;
+  color: #232526;
+}
+
+.select-gaming option {
+  color: #222;
+  background: #fff;
+  font-weight: 600;
+}
+
+
+.select-gaming option:checked {
+  background: #00ffe7;
+  color: #232526;
 }

@@ -269,3 +269,25 @@ main {
   background: #00ffe7;
   color: #232526;
 }
+
+/* ////////////////////////////////////
+////////////SALE ITEMS//////////// */
+
+.badge-offer {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(221, 36, 118, 0.15);
+  margin-left: 8px;
+  letter-spacing: 1px;
+  transition: transform 0.2s;
+}
+
+.badge-offer:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 4px 16px rgba(221, 36, 118, 0.25);
+}

@@ -15,6 +15,7 @@ const SearchPage = () => {
     const [order, setOrder] = useState("");
     const queryParams = new URLSearchParams(location.search)
     const query = queryParams.get("q") || "";
+    const offer = queryParams.get("offer") === "true";
     const { cartProducts, removeFromCart, addToCart } = useCart()
     const cart = JSON.parse(localStorage.getItem("cart")) || {}
 
@@ -37,13 +38,17 @@ const SearchPage = () => {
             }
 
         }).then((response) => {
-            setVideogames(response.data);
-            console.log(response.data);
+            let data = response.data;
+            if (offer) {
+                data = data.filter(videogame => videogame.offer !== null)
+            }
+            setVideogames(data);
+            console.log(data);
         })
             .catch((err) => {
                 console.log(err);
             })
-    }, [query, sort, order]);
+    }, [query, sort, order, offer]);
     return (
 
         <>
@@ -92,7 +97,7 @@ const SearchPage = () => {
                                                     ))}
                                                 </div>
                                                 {(cart[videogame.id]?.quantity || 0) > 0 ? (
-                                                    <div className='d-flex'>
+                                                    <div className='d-flex align-items-center'>
                                                         <p>Quantità: </p>
                                                         <div>
                                                             <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); removeFromCart(videogame) }}>-</button>
@@ -102,10 +107,14 @@ const SearchPage = () => {
                                                             <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); addToCart(videogame) }}>+</button>
                                                         </div>
                                                     </div>
-
                                                 ) : (
-                                                    <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
+                                                    <div className={`d-flex align-items-center ${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
                                                         <AddCart product={videogame} />
+                                                        {videogame.offer !== null && (
+                                                            <span className="badge-offer ms-2">
+                                                                -{(videogame.offer * 100).toFixed(0)}%
+                                                            </span>
+                                                        )}
                                                     </div>
                                                 )}
                                             </div>

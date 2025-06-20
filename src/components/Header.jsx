@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    navigate("/SearchPage", { state: { search } })
+  };
   return (
     <header>
       <nav className="navbar">
@@ -12,6 +19,18 @@ const Header = () => {
                 BOOGAMING
               </Link>
             </div>
+          </div>
+          <div className="d-flex justify-content-end m-1">
+            <form className="search-form-header" onSubmit={e => e.preventDefault()}>
+              <input
+                type="text"
+                className="search-input m-1"
+                placeholder="cerca"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+              <button className="btn-search" onClick={handleSearch} type="button">Ricerca</button>
+            </form>
           </div>
         </div>
       </nav>

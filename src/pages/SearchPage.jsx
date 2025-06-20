@@ -3,81 +3,103 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import AddCart from '../components/AddCart';
+import { useLocation } from 'react-router-dom';
+import { end } from '@popperjs/core';
 
 const SearchPage = () => {
 
+    const location = useLocation();
     const [videogames, setVideogames] = useState([]);
-    const [search, setSearch] = useState("");
-    const [filteredVideogames, setFilteredVideogames] = useState(videogames);
+    const [sort, setSort] = useState("");
+    const [order, setOrder] = useState("");
+    const query = location.state?.search;
+
+
+    const endpoint = "http://127.0.0.1:3000/api/videogames"
+
+    const handleSort = (e) => {
+        setSort(e.target.value);
+    };
+    const handleOrder = (e) => {
+        setOrder(e.target.value);
+    };
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/videogames/").then((response) => {
-            setVideogames(response.data);
-            console.log(response.data);
-        })
-            .catch((err) => {
-                console.log(err);
+        if (query) {
+            axios.get(endpoint, {
+                params: {
+                    q: query,
+                    sort: sort,
+                    order: order
+                }
+
+            }).then((response) => {
+                setVideogames(response.data);
+                console.log(response.data);
             })
-    }, []);
-
-    useEffect(() => {
-        if (search === "") {
-            setFilteredVideogames(videogames);
-        } else {
-            const filterArray = videogames.filter((videogame) =>
-                videogame.name.toLowerCase().includes(search.toLowerCase())
-            );
-            setFilteredVideogames(filterArray);
+                .catch((err) => {
+                    console.log(err);
+                })
         }
-    }, [search, videogames]);
+    }, [query, sort, order]);
     return (
+
         <>
-            <div>
-                <div className="container">
-                    <h1 className="page-title">pagina di ricerca</h1>
-                    <form className="search-form" onSubmit={e => e.preventDefault()}>
-                        <input
-                            type="text"
-                            className="search-input"
-                            placeholder="cerca"
-                            value={search}
-                            onChange={e => setSearch(e.target.value)}
-                        />
-                        <button className="btn-search" type="submit">Ricerca</button>
-                    </form>
+            <form className="search-sort-form ms-3">
+                <div className="select-group">
+                    <select className="select-gaming" name="select-option" id="select-option" onChange={handleSort} defaultValue="">
+                        <option value="" disabled>Seleziona per</option>
+                        <option value="name">Nome</option>
+                        <option value="release">Data di uscita</option>
+                        <option value="price">Prezzo</option>
+                    </select>
+                    <span className="select-arrow">&#9662;</span>
                 </div>
-            </div>
+                <div className="select-group">
+                    <select className="select-gaming" name="select-order" id="select-order" onChange={handleOrder} defaultValue="">
+                        <option value="" disabled>Ordina per</option>
+                        <option value="asc">Crescente</option>
+                        <option value="desc">Decrescente</option>
+                    </select>
+                    <span className="select-arrow">&#9662;</span>
+                </div>
+            </form>
+
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
-                        <div className="">
-                            {filteredVideogames.map((videogame) => (
-                                <Link key={`videogame-${videogame.id}`} to={`/videogames/${videogame.id}`}>
-                                    <div  className="card-instant">
-                                        <img
-                                            src={videogame.image}
-                                            alt={videogame.name}
-                                            className="card-instant-img"
-                                        />
-                                        <div className="card-instant-body">
-                                            <div className="card-instant-title">{videogame.name}</div>
-                                            <div className="card-instant-price">{videogame.price}€</div>
-                                            <div className="card-instant-publisher">{videogame.publisher.name}</div>
-                                            <div className="card-instant-badges">
-                                                <span className="badge-genre">{videogame.genres[0]?.name}</span>
-                                                {videogame.platforms.map((v, idx) => (
-                                                    <span key={idx} className="badge-platform">{v.name}</span>
-                                                ))}
+
+                    <div className="container">
+                        <div className="row">
+                            {videogames.map((videogame) => (
+                                <div key={`videogame-${videogame.id}`} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                                    <Link to={`/videogames/${videogame.id}`}>
+                                        <div className="card-instant">
+                                            <img
+                                                src={videogame.image}
+                                                alt={videogame.name}
+                                                className="card-instant-img"
+                                            />
+                                            <div className="card-instant-body">
+                                                <div className="card-instant-title">{videogame.name}</div>
+                                                <div className="card-instant-price">{videogame.price}€</div>
+                                                <div className="card-instant-publisher">{videogame.publisher?.name || "Editore sconosciuto"}</div>
+                                                <div className="card-instant-badges">
+                                                    <span className="badge-genre">{videogame.genres?.[0]?.name || "Genere non disponibile"}</span>
+                                                    {videogame.platforms?.map((v, idx) => (
+                                                        <span key={idx} className="badge-platform">{v.name}</span>
+                                                    ))}
+                                                </div>
+                                                <AddCart product={videogame} />
                                             </div>
-                                            <AddCart product={videogame}/>
                                         </div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                </div>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </>
     )

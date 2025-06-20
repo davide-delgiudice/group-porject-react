@@ -12,7 +12,7 @@ const SearchPage = () => {
     const [videogames, setVideogames] = useState([]);
     const [sort, setSort] = useState("");
     const [order, setOrder] = useState("");
-    const queryParams = new URLSearchParams(location)
+    const queryParams = new URLSearchParams(location.search)
     const query = queryParams.get("q") || "";
 
 

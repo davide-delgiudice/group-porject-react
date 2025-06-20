@@ -6,8 +6,9 @@ const Header = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = () => {
-    navigate("/SearchPage", { state: { search } })
+    navigate(`/SearchPage?q=${encodeURIComponent(search)}`);
   };
+
   return (
     <header>
       <nav className="navbar">

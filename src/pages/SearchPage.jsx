@@ -12,10 +12,11 @@ const SearchPage = () => {
     const [videogames, setVideogames] = useState([]);
     const [sort, setSort] = useState("");
     const [order, setOrder] = useState("");
-    const query = location.state?.search;
+    const queryParams = new URLSearchParams(location)
+    const query = queryParams.get("q") || "";
 
 
-    const endpoint = "http://127.0.0.1:3000/api/videogames"
+    const endpoint = "http://localhost:3000/api/videogames/"
 
     const handleSort = (e) => {
         setSort(e.target.value);
@@ -25,22 +26,20 @@ const SearchPage = () => {
     };
 
     useEffect(() => {
-        if (query) {
-            axios.get(endpoint, {
-                params: {
-                    q: query,
-                    sort: sort,
-                    order: order
-                }
+        axios.get(endpoint, {
+            params: {
+                q: query,
+                sort: sort,
+                order: order
+            }
 
-            }).then((response) => {
-                setVideogames(response.data);
-                console.log(response.data);
+        }).then((response) => {
+            setVideogames(response.data);
+            console.log(response.data);
+        })
+            .catch((err) => {
+                console.log(err);
             })
-                .catch((err) => {
-                    console.log(err);
-                })
-        }
     }, [query, sort, order]);
     return (
 

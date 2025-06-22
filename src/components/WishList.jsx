@@ -20,7 +20,7 @@ const WishList = () => {
                 <button type='button' className='btn btn-primary' onClick={handleClick}><i class="fa-solid fa-star"></i></button>
 
                 {showList && wishListProducts.length != 0 &&
-                    <div className='position-absolute wishlist '>
+                    <div className='position-absolute wishlist'>
                         <div className='ms-2'>
                             <h1 className='fs-3'>WishList</h1>
                             <div className='overflow-hidden scrollable'>
@@ -44,7 +44,7 @@ const WishList = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='py-2 d-flex justify-content-center border-top'>
+                        <div className='p-2 d-flex justify-content-center border-top'>
                             <button type='button' className='btn btn-danger' onClick={clearWishList}>Cancella Wishlist</button>
                         </div>
                     </div>

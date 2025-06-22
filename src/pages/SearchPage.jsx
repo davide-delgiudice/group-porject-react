@@ -92,24 +92,28 @@ const SearchPage = () => {
                                                         <span key={idx} className="badge-platform">{v.name}</span>
                                                     ))}
                                                 </div>
-                                                {(cart[videogame.id]?.quantity || 0) > 0 ? (
-                                                    <div className='d-flex'>
-                                                        <p>Quantità: </p>
-                                                        <div>
-                                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); removeFromCart(videogame) }}>-</button>
+                                                <div className='d-flex'>
+                                                    {(cart[videogame.id]?.quantity || 0) > 0 ? (
+                                                        <div className='d-flex'>
+                                                            <p>Quantità: </p>
+                                                            <div>
+                                                                <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); removeFromCart(videogame) }}>-</button>
+                                                            </div>
+                                                            <p>{cart[videogame.id]?.quantity}</p>
+                                                            <div>
+                                                                <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); addToCart(videogame) }}>+</button>
+                                                            </div>
                                                         </div>
-                                                        <p>{cart[videogame.id]?.quantity}</p>
-                                                        <div>
-                                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={(e) => { e.preventDefault(); addToCart(videogame) }}>+</button>
-                                                        </div>
-                                                    </div>
 
-                                                ) : (
-                                                    <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
-                                                        <AddCart product={videogame} />
+                                                    ) : (
+                                                        <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
+                                                            <AddCart product={videogame} />
+                                                        </div>
+                                                    )}
+                                                    <div>
                                                         <AddWishList product={videogame} />
                                                     </div>
-                                                )}
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>
@@ -117,8 +121,8 @@ const SearchPage = () => {
                             ))}
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
 
         </>

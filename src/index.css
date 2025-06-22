@@ -295,4 +295,7 @@ main {
 }
 .total{
   border-top: 1px solid white;
+  position: fixed;
+  bottom: 10px;
+  background-color: #31495a;
 }

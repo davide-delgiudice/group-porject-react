@@ -15,8 +15,10 @@ const ShoppingCart = () => {
 
     return (
         <>
-            <h1>Carrello</h1>
-            <div className={`col-2 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 border-start cart vh-100`}>
+            <div className={`col-2 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 cart vh-100 shadow-lg`}>
+                <div className='p-2'>
+                    <h1>Carrello</h1>
+                </div>
                 <div className='overflow-hidden scrollable px-2'>
                     <div className='overflow-y-auto shopping-cart h-100 overflow-x-hidden'>
                         {cartProducts.map((product) => (

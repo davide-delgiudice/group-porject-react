@@ -1,17 +1,10 @@
 import React from 'react'
 import { useCart } from '../contexts/CartContext'
+import { Link } from 'react-router-dom'
 
 const ShoppingCart = () => {
 
-    let totalPrice = 0
-    let finalPrice = 0
-
-    const { cartProducts, clearCart, loadCart, removeFromCart, addToCart, removeSingleProduct } = useCart()
-
-    for (let j = 0; j < cartProducts.length; j++) {
-        totalPrice += parseFloat(cartProducts[j].price * cartProducts[j].quantity)
-        finalPrice = totalPrice.toFixed(2)
-    }
+    const { cartProducts, clearCart, loadCart, removeFromCart, addToCart, removeSingleProduct, price, sendCart } = useCart()
 
     return (
         <>
@@ -24,6 +17,7 @@ const ShoppingCart = () => {
                             <div className='d-flex justify-content-between row'>
                                 <span>Titolo: {product.name}</span>
                                 <span>Prezzo: {product.price}&euro;</span>
+                                <span>Sconto: {(product.price*product.offer).toFixed(2)}&euro;</span>
                             </div>
                             <div className='d-flex'>
                                 <p>Quantità: </p>
@@ -39,13 +33,14 @@ const ShoppingCart = () => {
                                 <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Cancella dal carrello</button>
                             </div>
                         </div>
-                        
+
                     ))}
                 </div>
             </div>
             <div className='position-fixed bottom-0 z-3 total border-top'>
                 <div className='py-3 '>
-                    <h3>Spesa Totale: {finalPrice}&euro;</h3>
+                    <h3>Spesa Totale: {price}&euro;</h3>
+                    <Link type='button' className='btn btn-success' to='/checkoutpage' onClick={sendCart}>Checkout</Link>
                     <button type='button' className='btn btn-danger' onClick={clearCart}>Svuota Carrello</button>
                 </div>
             </div>

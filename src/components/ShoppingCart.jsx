@@ -20,26 +20,30 @@ const ShoppingCart = () => {
                     <h1>Carrello</h1>
                     {cartProducts.map((product) => (
                         <div key={product.id} className='my-3'>
-                            <img src={product.image} className='img-fluid my-1' alt="" />
+                            <div className='card cart-img'>
+                                <img src={product.image} className='img-fluid my-1' alt="" />
+                            </div>
                             <div className='d-flex justify-content-between row'>
                                 <span>Titolo: {product.name}</span>
                                 <span>Prezzo: {product.price}&euro;</span>
                             </div>
-                            <div className='d-flex'>
-                                <p>Quantità: </p>
-                                <div>
-                                    <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => removeFromCart(product)}>-</button>
+                            <div className='d-flex align-items-center '>
+                                <div className='d-flex'>
+                                    <p>Quantità: </p>
+                                    <div>
+                                        <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => removeFromCart(product)}>-</button>
+                                    </div>
+                                    <p>{product.quantity}</p>
+                                    <div>
+                                        <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => addToCart(product)}>+</button>
+                                    </div>
                                 </div>
-                                <p>{product.quantity}</p>
-                                <div>
-                                    <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => addToCart(product)}>+</button>
+                                <div className='pb-2'>
+                                    <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Rimuovi</button>
                                 </div>
-                            </div>
-                            <div>
-                                <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Cancella dal carrello</button>
                             </div>
                         </div>
-                        
+
                     ))}
                 </div>
             </div>

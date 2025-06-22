@@ -9,6 +9,7 @@ body {
 }
 
 
+
 a {
   text-decoration: none;
 }
@@ -268,4 +269,18 @@ main {
 .select-gaming option:checked {
   background: #00ffe7;
   color: #232526;
+}
+
+.cart{
+  background-color: #31495a;
+}
+
+.cart-img{
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+.cart-img img {
+  border-radius: 10px;
 }

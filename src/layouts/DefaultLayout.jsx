@@ -20,7 +20,7 @@ const DefaultLayout = () => {
         <div className="w-100">
           <Outlet />
         </div>
-        <div className={`col-2 p-3 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 bg-primary vh-100`}>
+        <div className={`col-2 p-3 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 border-start cart vh-100`}>
           <ShoppingCart />
         </div>
       </main>

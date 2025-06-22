@@ -10,6 +10,8 @@ export const CartProvider = ({ children }) => {
     const [showAlert, setShowAlert] = useState(false)
     const [savedCheckoutDatas, setSavedCheckoutDatas] = useState([])
 
+    const [isLoaded, setIsLoaded] = useState(false)
+
     const price = cartProducts.reduce((total, product) => total + (product.offer ? product.price * (1 - product.offer) : product.price) * product.quantity, 0).toFixed(2)
 
     const sendCart = () => {
@@ -17,18 +19,16 @@ export const CartProvider = ({ children }) => {
             id: product.id,
             quantity: product.quantity
         }));
-        
+
         axios.post("http://127.0.0.1:3000/api/orders/preview", {
             videogames: checkoutGames
         }).then((resp) => {
-            console.log("resp", resp.data)
             setSavedCheckoutDatas(resp.data)
+            setIsLoaded(true);
         }).catch((err) => {
             console.log(err)
         })
     }
-
-    console.log("saved", savedCheckoutDatas)
 
     const loadCart = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || {}
@@ -89,7 +89,19 @@ export const CartProvider = ({ children }) => {
     }, [])
 
     return (
-        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart, showAlert, removeSingleProduct, price, sendCart, savedCheckoutDatas }}>
+        <CartContext.Provider value={{
+            cartProducts,
+            addToCart,
+            loadCart,
+            clearCart,
+            removeFromCart,
+            showAlert,
+            removeSingleProduct,
+            price,
+            sendCart,
+            savedCheckoutDatas,
+            isLoaded
+        }}>
             {children}
         </CartContext.Provider>
     )

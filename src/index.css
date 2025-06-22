@@ -284,3 +284,12 @@ main {
 .cart-img img {
   border-radius: 10px;
 }
+
+.wishlist{
+  background-color: #1A2730;
+  color: white;
+  right: 300px;
+  top: 80px;
+  width: 15%;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.404);
+}

@@ -6,7 +6,7 @@ const ShoppingCart = () => {
     let totalPrice = 0
     let finalPrice = 0
 
-    const { cartProducts, clearCart, loadCart, removeFromCart, addToCart, removeSingleProduct } = useCart()
+    const { cartProducts, clearCart, removeFromCart, addToCart, removeSingleProduct } = useCart()
 
     for (let j = 0; j < cartProducts.length; j++) {
         totalPrice += parseFloat(cartProducts[j].price * cartProducts[j].quantity)

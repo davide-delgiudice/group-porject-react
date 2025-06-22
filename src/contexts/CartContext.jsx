@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { Alert } from "reactjs-alert";
 
 const CartContext = createContext()
 

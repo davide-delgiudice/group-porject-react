@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import WishList from "./WishList";
 
 const Header = () => {
   const [search, setSearch] = useState("");
@@ -21,7 +22,10 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <div className="d-flex justify-content-end m-1">
+          <div className="d-flex justify-content-end align-items-center m-1">
+            <div className="me-4">
+              <WishList />
+            </div>
             <form className="search-form-header" onSubmit={e => e.preventDefault()}>
               <input
                 type="text"

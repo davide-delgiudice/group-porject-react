@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import AddCart from '../components/AddCart'
+import AddWishList from '../components/AddWishList'
 
 
 const ProductPage = () => {
@@ -46,6 +47,7 @@ const ProductPage = () => {
                         ))}
                     </p>
                     <AddCart product={product} />
+                    <AddWishList product={product} />
                 </div>
             </div>
         </>

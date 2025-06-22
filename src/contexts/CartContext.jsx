@@ -11,14 +11,10 @@ export const CartProvider = ({ children }) => {
 
     const price = cartProducts.reduce((total, product) => total + (product.offer ? product.price * (1 - product.offer) : product.price) * product.quantity, 0).toFixed(2)
 
-    let checkoutGames = cartProducts.map((product) => {
-        return [
-            {
-                id: product.id,
-                quantity: product.quantity
-            }
-        ]
-    })
+    let checkoutGames = cartProducts.map((product) => ({
+        id: product.id,
+        quantity: product.quantity
+    }))
     console.log("checkoutGames", checkoutGames)
 
     let savedCheckoutDatas = []

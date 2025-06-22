@@ -53,16 +53,6 @@ const CheckoutPage = () => {
           </div>
         </div>
       </div>
-
-      {/* <div>
-        {cartProducts.map((product) => (
-          <>
-            <div>{product.id}</div>
-            <div>{product.quantity}</div>
-            <div>{price}</div>
-          </>
-        ))}
-      </div> */}
     </>
   )
 }

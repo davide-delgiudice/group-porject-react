@@ -51,23 +51,14 @@ export const WishListProvider = ({ children }) => {
         loadWishList()
     }
 
-    const removeSingleProductWishList = (product) => {
-        const wishList = JSON.parse(localStorage.getItem("wishList")) || {}
-
-        if (!wishList[product.id]) return
-
-        delete wishList[product.id]
-        localStorage.setItem("wishList", JSON.stringify(wishList))
-        loadWishList()
-    }
-
+   
     useEffect(() => {
         loadWishList()
     }, [])
 
 
     return (
-        <WishListContext.Provider value={{ wishListProducts, addToWishList, loadWishList, clearWishList, removeFromWishList, showAlert, removeSingleProductWishList }}>
+        <WishListContext.Provider value={{ wishListProducts, addToWishList, loadWishList, clearWishList, removeFromWishList, showAlert}}>
             {children}
         </WishListContext.Provider>
     )

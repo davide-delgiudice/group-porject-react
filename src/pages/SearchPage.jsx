@@ -6,6 +6,7 @@ import AddCart from '../components/AddCart';
 import { useLocation } from 'react-router-dom';
 import { end } from '@popperjs/core';
 import { useCart } from '../contexts/CartContext';
+import AddWishList from '../components/AddWishList';
 
 const SearchPage = () => {
 
@@ -106,6 +107,7 @@ const SearchPage = () => {
                                                 ) : (
                                                     <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
                                                         <AddCart product={videogame} />
+                                                        <AddWishList product={videogame} />
                                                     </div>
                                                 )}
                                             </div>

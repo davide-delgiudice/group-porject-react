@@ -11,7 +11,7 @@ const AddWishList = ( {product} ) => {
 
     return (
         <>
-            <button type='button' className='btn btn-success' onClick={addWishList}>Aggiungi alla wishlist</button>
+            <button type='button' className='btn btn-primary ms-2' onClick={addWishList}>Aggiungi alla wishlist</button>
         </>
     )
 }

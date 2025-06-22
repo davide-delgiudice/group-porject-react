@@ -15,40 +15,40 @@ const ShoppingCart = () => {
 
     return (
         <>
-            <div className='overflow-hidden scrollable'>
-                <div className='overflow-y-auto h-100 overflow-x-hidden'>
-                    <h1>Carrello</h1>
-                    {cartProducts.map((product) => (
-                        <div key={product.id} className='my-3'>
-                            <div className='card cart-img'>
-                                <img src={product.image} className='img-fluid my-1' alt="" />
-                            </div>
-                            <div className='d-flex justify-content-between row'>
-                                <span>Titolo: {product.name}</span>
-                                <span>Prezzo: {product.price}&euro;</span>
-                            </div>
-                            <div className='d-flex align-items-center '>
-                                <div className='d-flex'>
-                                    <p>Quantità: </p>
-                                    <div>
-                                        <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => removeFromCart(product)}>-</button>
+            <h1>Carrello</h1>
+            <div className={`col-2 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 border-start cart vh-100`}>
+                <div className='overflow-hidden scrollable px-2'>
+                    <div className='overflow-y-auto shopping-cart h-100 overflow-x-hidden'>
+                        {cartProducts.map((product) => (
+                            <div key={product.id} className='my-3'>
+                                <div className='card cart-img'>
+                                    <img src={product.image} className='img-fluid my-1' alt="" />
+                                </div>
+                                <div className='d-flex justify-content-between row'>
+                                    <span>Titolo: {product.name}</span>
+                                    <span>Prezzo: {product.price}&euro;</span>
+                                </div>
+                                <div className='d-flex align-items-center '>
+                                    <div className='d-flex'>
+                                        <p>Quantità: </p>
+                                        <div>
+                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => removeFromCart(product)}>-</button>
+                                        </div>
+                                        <p>{product.quantity}</p>
+                                        <div>
+                                            <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => addToCart(product)}>+</button>
+                                        </div>
                                     </div>
-                                    <p>{product.quantity}</p>
-                                    <div>
-                                        <button className='mx-2 btn btn-outline-secondary px-1 py-0 text-white btn-sm' type='button' onClick={() => addToCart(product)}>+</button>
+                                    <div className='pb-2'>
+                                        <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Rimuovi</button>
                                     </div>
                                 </div>
-                                <div className='pb-2'>
-                                    <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Rimuovi</button>
-                                </div>
                             </div>
-                        </div>
 
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div className='position-fixed bottom-0 z-3 total border-top'>
-                <div className='py-3 '>
+                <div className='total p-2'>
                     <h3>Spesa Totale: {finalPrice}&euro;</h3>
                     <button type='button' className='btn btn-danger' onClick={clearCart}>Svuota Carrello</button>
                 </div>

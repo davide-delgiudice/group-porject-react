@@ -13,7 +13,7 @@ const WishList = () => {
     return (
         <>
             <div>
-                <button type='button' className='btn btn-primary' onClick={handleClick}><i class="fa-solid fa-star"></i></button>
+                <button type='button' className='btn btn-primary' onClick={handleClick}><i className="fa-solid fa-star"></i></button>
 
                 {wishListProducts.length === 0 && showList ?
                     (<div className='position-absolute wishlist p-3 rounded'>

@@ -44,7 +44,7 @@ const ShoppingCart = () => {
                     </div>
                 </div>
                 <div className='total p-2'>
-                    <h3>Spesa Totale: {finalPrice}&euro;</h3>
+                    <h3>Spesa Totale: {price}&euro;</h3>
                     {cartProducts.map((product) => (
                         <div key={product.id} className='my-3'>
                             <img src={product.image} className='img-fluid my-1' alt="" />

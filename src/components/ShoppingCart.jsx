@@ -39,7 +39,7 @@ const ShoppingCart = () => {
                                 <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Cancella dal carrello</button>
                             </div>
                         </div>
-                        
+
                     ))}
                 </div>
             </div>

@@ -45,17 +45,18 @@ header {
 }
 
 @media (max-width: 374px) {
-  .herospace{
+  .herospace {
     background-image: none;
   }
-  .col-6.col-override-320{
+
+  .col-6.col-override-320 {
     flex: 100%;
     text-align: center;
   }
 }
 
 @media (min-width: 375px) and (max-width: 424px) {
-  .col-6.col-override-375{
+  .col-6.col-override-375 {
     width: 75%;
   }
 }
@@ -298,11 +299,11 @@ main {
   color: #232526;
 }
 
-.cart{
+.cart {
   background-color: #31495a;
 }
 
-.cart-img{
+.cart-img {
   width: 50%;
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -312,7 +313,7 @@ main {
   border-radius: 10px;
 }
 
-.wishlist{
+.wishlist {
   background-color: #1A2730;
   color: white;
   right: 300px;
@@ -320,9 +321,32 @@ main {
   width: 15%;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.404);
 }
-.total{
+
+.total {
   border-top: 1px solid white;
   position: fixed;
   bottom: 10px;
   background-color: #31495a;
+}
+
+/* ////////////////////////////////////
+////////////SALE ITEMS//////////// */
+
+.badge-offer {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(221, 36, 118, 0.15);
+  margin-left: 8px;
+  letter-spacing: 1px;
+  transition: transform 0.2s;
+}
+
+.badge-offer:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 4px 16px rgba(221, 36, 118, 0.25);
 }

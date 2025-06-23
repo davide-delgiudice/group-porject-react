@@ -16,6 +16,7 @@ const SearchPage = () => {
     const [order, setOrder] = useState("");
     const queryParams = new URLSearchParams(location.search)
     const query = queryParams.get("q") || "";
+    const offer = queryParams.get("offer") === "true";
     const { cartProducts, removeFromCart, addToCart } = useCart()
     const cart = JSON.parse(localStorage.getItem("cart")) || {}
 
@@ -38,13 +39,17 @@ const SearchPage = () => {
             }
 
         }).then((response) => {
-            setVideogames(response.data);
-            console.log(response.data);
+            let data = response.data;
+            if (offer) {
+                data = data.filter(videogame => videogame.offer !== null)
+            }
+            setVideogames(data);
+            console.log(data);
         })
             .catch((err) => {
                 console.log(err);
             })
-    }, [query, sort, order]);
+    }, [query, sort, order, offer]);
     return (
 
         <>

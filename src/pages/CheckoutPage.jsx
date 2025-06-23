@@ -1,11 +1,55 @@
 import React from 'react'
+import axios from 'axios';
+import ModalPayment from '../components/ModalPayment';
+
 import { useCart } from '../contexts/CartContext'
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { use } from 'react';
 
 const CheckoutPage = () => {
 
   const { savedCheckoutDatas, isLoaded } = useCart();
-  console.log("save-data", savedCheckoutDatas);
+  const [discountCode, setDiscountCode] = useState('');
+  const [savedDiscountedDatas, setSavedDiscountedDatas] = useState([]);
+  const [discountApplied, setDiscountApplied] = useState(false)
+  const [showPayment, setShowPayment] = useState(false)
+
+  const handleChange = (e) => {
+    setDiscountCode(e.target.value);
+  };
+
+  const sendCheckoutDiscount = (e) => {
+    e.preventDefault();
+    const checkoutGames = savedCheckoutDatas.items.map((item) => ({
+      id: item.id,
+      quantity: item.quantity
+    }));
+
+    axios.post("http://127.0.0.1:3000/api/orders/preview", {
+      videogames: checkoutGames,
+      discount_code: discountCode
+    }).then((resp) => {
+      if (resp.data.discount) {
+        setSavedDiscountedDatas(resp.data)
+        setDiscountApplied(true);
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+  };
+
+  useEffect(() => {
+    if (discountCode === '') {
+      setDiscountApplied(false);
+    }
+  }, [discountCode]);
+
+  console.log("saved", savedDiscountedDatas)
+
+  const handlePayment = () => {
+    setShowPayment(true);
+  };
 
   return (
     <>
@@ -51,17 +95,41 @@ const CheckoutPage = () => {
                       <div>Prezzo: {product.unit_price}&euro;</div>
                     </div>
                   ))}
+                  {/* form */}
+                  <form onSubmit={sendCheckoutDiscount}>
+                    <div className="form-floating mb-3">
+                      <input type="text" name="discount" className="form-control" id="floatingInput" value={discountCode} onChange={handleChange} placeholder="Inserisci Sconto" />
+                      <label htmlFor="floatingInput">Codice Sconto</label>
+                      <button className="btn btn-danger" disabled={discountApplied}>Applica</button>
+                    </div>
+                  </form>
+
+                  {/* alert per sconto */}
+                  {discountApplied && (
+                    <div className="alert alert-success">
+                      Sconto applicato: <strong>{savedDiscountedDatas.discount_code}</strong> (-{savedDiscountedDatas.discount_value * 100}%)
+                    </div>
+                  )}
+
+                  {/* totale ordine */}
                   <hr />
-                  <h5>Totale: {savedCheckoutDatas.total}&euro;</h5>
+                  <h5>Totale:{" "}
+                    {discountApplied
+                      ? savedDiscountedDatas.discounted_total
+                      : savedCheckoutDatas.total}
+                    &euro;
+                  </h5>
                 </>
               )}
-              <div className='btn btn-danger'>Checkout{' >'}</div>
+              <div className='btn btn-danger' onClick={handlePayment}>Pagamento{' >'}</div>
               <span className='text-center'>oppure</span>
               <Link className='text-center' to="/SearchPage">{'< '}Continua gli acquisti</Link>
             </div>
           </div>
         </div>
       </div>
+      {/* modale per pagamento */}
+      <ModalPayment showPayment={showPayment} setShowPayment={setShowPayment} />
     </>
   )
 }

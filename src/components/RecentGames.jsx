@@ -20,7 +20,7 @@ const RecentGames = () => {
     }, []);
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 recent-games-w">
             <div className="row">
                 <div className="col-12">
                     <h2 className="text-light">Ultime uscite &#11167;</h2>
@@ -33,11 +33,6 @@ const RecentGames = () => {
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                         </div>
                         <div className="carousel-inner">
-                            {/* 
-                                dobbiamo selezionare gli ultimi 5 giochi usciti
-                                metodi: SORT()
-                                - filtrare i giochi in base alla data; -> condizione new Date etc
-                            */}
                             {videogames.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)).slice(0, 5).map((videogame, index) => (
                                 <div key={`recentGames-${videogame.id}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                                     <Link to={`/videogames/${videogame.id}`}>

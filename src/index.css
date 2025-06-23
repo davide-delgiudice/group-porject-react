@@ -44,6 +44,33 @@ header {
   background-color: #1A2730;
 }
 
+@media (max-width: 374px) {
+  .herospace{
+    background-image: none;
+  }
+  .col-6.col-override-320{
+    flex: 100%;
+    text-align: center;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 424px) {
+  .col-6.col-override-375{
+    width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .recent-games-w {
+    width: 75%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .recent-games-w {
+    width: 50%;
+  }
+}
 
 .carousel-inner {
   border-radius: 10px;
@@ -105,7 +132,7 @@ main {
 }
 
 .btn-search {
-  background-color: #d32f2f;
+  background-color: #E95D2C;
   border: none;
   color: #fff;
   font-weight: 700;

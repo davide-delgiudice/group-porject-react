@@ -5,6 +5,7 @@ import SearchPage from "./pages/SearchPage";
 import ProductPage from "./pages/ProductPage";
 import { CartProvider } from "./contexts/CartContext";
 import { WishListProvider } from "./contexts/WishListContext";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="/videogames/:id" element={<ProductPage />} />
                 <Route path="/SearchPage" element={<SearchPage />} />
-              </Route>
+                <Route path="/checkoutpage" element={<CheckoutPage />}></Route>
+            </Route>
             </Routes>
           </BrowserRouter>
         </WishListProvider>

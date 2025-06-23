@@ -5,7 +5,7 @@ const Hero = () => {
     <div className="herospace">
       <div className="container py-5">
         <div className="row">
-          <div className="col-6">
+          <div className="col-6 col-override-320 col-override-375 col-override-425">
             <div>
               <h2 className="fw-bold text-light">I TUOI VIDEOGIOCHI</h2>
               <h2 className="fw-bold text-light">LA TUA STORIA</h2>

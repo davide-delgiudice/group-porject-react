@@ -6,7 +6,6 @@ import axios from "axios";
 
 const HomePage = () => {
   const [videogames, setVideogames] = useState([]);
-  console.log(videogames);
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/videogames/").then((response) => {

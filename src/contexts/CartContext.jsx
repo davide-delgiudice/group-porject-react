@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
+import { Alert } from "reactjs-alert";
 
 const CartContext = createContext()
 
@@ -6,6 +8,27 @@ export const CartProvider = ({ children }) => {
 
     const [cartProducts, setCartProducts] = useState([])
     const [showAlert, setShowAlert] = useState(false)
+    const [savedCheckoutDatas, setSavedCheckoutDatas] = useState([])
+
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    const price = cartProducts.reduce((total, product) => total + (product.offer ? product.price * (1 - product.offer) : product.price) * product.quantity, 0).toFixed(2)
+
+    const sendCart = () => {
+        const checkoutGames = cartProducts.map((product) => ({
+            id: product.id,
+            quantity: product.quantity
+        }));
+
+        axios.post("http://127.0.0.1:3000/api/orders/preview", {
+            videogames: checkoutGames
+        }).then((resp) => {
+            setSavedCheckoutDatas(resp.data)
+            setIsLoaded(true);
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
 
     const loadCart = () => {
         const storedCart = JSON.parse(localStorage.getItem("cart")) || {}
@@ -65,9 +88,20 @@ export const CartProvider = ({ children }) => {
         loadCart()
     }, [])
 
-
     return (
-        <CartContext.Provider value={{ cartProducts, addToCart, loadCart, clearCart, removeFromCart, showAlert, removeSingleProduct }}>
+        <CartContext.Provider value={{
+            cartProducts,
+            addToCart,
+            loadCart,
+            clearCart,
+            removeFromCart,
+            showAlert,
+            removeSingleProduct,
+            price,
+            sendCart,
+            savedCheckoutDatas,
+            isLoaded
+        }}>
             {children}
         </CartContext.Provider>
     )

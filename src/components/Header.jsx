@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WishList from "./WishList";
 
-const Header = () => {
+const Header = ({ isCartOpen, setIsCartOpen, showCartToggle }) => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
   const handleSearch = () => {
     navigate(`/SearchPage?q=${encodeURIComponent(search)}`);
   };
@@ -20,9 +21,22 @@ const Header = () => {
                 <img src="./src/assets/logo.png" alt="" className="logo-design" />
                 BOOGAMING
               </Link>
-              <div className="me-4">
+              <div className="me-">
                 <WishList />
               </div>
+              {showCartToggle && (
+                <button
+                  className="btn btn-outline-light cart-btn ms-2"
+                  onClick={() => setIsCartOpen(!isCartOpen)}
+                  aria-label={isCartOpen ? "Nascondi carrello" : "Mostra carrello"}
+                >
+                  {isCartOpen ? (
+                    <i className="bi bi-x-lg" style={{ fontSize: "1.1rem" }}></i> // icona X per chiudere
+                  ) : (
+                    <i className="bi bi-cart3" style={{ fontSize: "1.1rem" }}></i> // icona carrello per aprire
+                  )}
+                </button>
+              )}
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-center m-1">
@@ -34,7 +48,9 @@ const Header = () => {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
-              <button className="btn-search mt-1 mb-2" onClick={handleSearch} type="button">Ricerca</button>
+              <button className="btn-search mt-1 mb-2" onClick={handleSearch} type="button">
+                Ricerca
+              </button>
             </form>
           </div>
         </div>

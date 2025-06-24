@@ -11,8 +11,8 @@ const Hero = () => {
               <h2 className="fw-bold text-light">LA TUA STORIA</h2>
               <p className="mt-3 text-light">Boogaming è dove puoi trovare i tuoi giochi preferiti, ad un prezzo vantaggioso!</p>
             </div>
-            <Link className="btn btn-all-color text-light fw-bold" to="/SearchPage">Dai un'occhiata</Link>
-            <Link className="btn btn-offer-color text-light fw-bold ms-1" to="/SearchPage?offer=true">Giochi in offerta</Link>
+            <Link className="btn btn-primary-color text-light fw-bold" to="/SearchPage">Dai un'occhiata</Link>
+            <Link className="btn btn-secondary-color text-light fw-bold ms-1" to="/SearchPage?offer=true">Giochi in offerta</Link>
           </div>
         </div>
       </div>

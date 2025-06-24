@@ -36,7 +36,7 @@ const WishList = () => {
                                         <div className="d-flex align-items-center">
                                             <button
                                                 type="button"
-                                                className="btn btn-wish text-light mt-2"
+                                                className="btn btn-primary-color text-light mt-2"
                                                 onClick={() => removeFromWishList(product)}
                                             >
                                                 Rimuovi
@@ -46,7 +46,7 @@ const WishList = () => {
                                 ))}
                                 <hr />
                                 <div className="d-flex justify-content-center pb-3">
-                                    <button type="button" className="btn btn-wish text-light" onClick={clearWishList}>
+                                    <button type="button" className="btn btn-primary-color text-light" onClick={clearWishList}>
                                         Cancella Wishlist
                                     </button>
                                 </div>

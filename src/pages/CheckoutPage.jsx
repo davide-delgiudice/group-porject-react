@@ -81,13 +81,6 @@ const CheckoutPage = () => {
         <div className="row align-items-center mt-5 mb-3">
           <div className="col-md-8">
             <h3>Carrello</h3>
-            <form action="/checkout" method="POST">
-              <input
-                type="submit"
-                className="btn btn-primary"
-                value="Proceed to Checkout"
-              />
-            </form>
           </div>
           <div className="col-md-4">
             <h3>Sommario</h3>
@@ -125,13 +118,13 @@ const CheckoutPage = () => {
                 <>
                   {savedCheckoutDatas.items.map((product) => (
                     <div key={`product-${product.id}`} className="mb-2">
-                      <div>{product.name}</div>
+                      <div className="fw-bold">{product.name}</div>
                       <div>Prezzo: {product.unit_price}&euro;</div>
                     </div>
                   ))}
                   {/* form */}
                   <form onSubmit={sendCheckoutDiscount}>
-                    <div className="form-floating mb-3">
+                    <div className="form-floating mb-3 text-center">
                       <input
                         type="text"
                         name="discount"
@@ -143,7 +136,7 @@ const CheckoutPage = () => {
                       />
                       <label htmlFor="floatingInput">Codice Sconto</label>
                       <button
-                        className="btn btn-danger"
+                        className="btn btn-primary-color text-light mt-3 w-100"
                         disabled={discountApplied}
                       >
                         Applica
@@ -171,11 +164,11 @@ const CheckoutPage = () => {
                   </h5>
                 </>
               )}
-              <div className="btn btn-danger" onClick={handlePayment}>
+              <div className="btn btn-primary-color text-light" onClick={handlePayment}>
                 Pagamento{" >"}
               </div>
-              <span className="text-center">oppure</span>
-              <Link className="text-center" to="/SearchPage">
+              <span className="text-center my-2">{"-"} oppure {"-"}</span>
+              <Link className="text-center btn btn-secondary-color text-light m-0" to="/SearchPage">
                 {"< "}Continua gli acquisti
               </Link>
             </div>

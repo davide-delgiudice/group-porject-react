@@ -18,7 +18,6 @@ const HomePage = () => {
       <Hero />
       <hr className="mt-0" />
       <RecentGames />
-      <hr />
       <PublisherSection />
     </>
   );

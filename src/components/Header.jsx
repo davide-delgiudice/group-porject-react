@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="navbar">
+      <nav className="navbar m-0">
         <div className="container-fluid">
           <div className="navbar-brand">
             <div className="d-flex align-items-center">
@@ -20,12 +20,12 @@ const Header = () => {
                 <img src="./src/assets/logo.png" alt="" className="logo-design" />
                 BOOGAMING
               </Link>
+              <div className="me-4">
+                <WishList />
+              </div>
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-center m-1">
-            <div className="me-4">
-              <WishList />
-            </div>
             <form className="search-form-header" onSubmit={e => e.preventDefault()}>
               <input
                 type="text"
@@ -34,7 +34,7 @@ const Header = () => {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
-              <button className="btn-search" onClick={handleSearch} type="button">Ricerca</button>
+              <button className="btn-search mt-1 mb-2" onClick={handleSearch} type="button">Ricerca</button>
             </form>
           </div>
         </div>

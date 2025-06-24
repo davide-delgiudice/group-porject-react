@@ -8,7 +8,7 @@ const ShoppingCart = () => {
 
     return (
         <>
-            <div className={`col-2 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 cart vh-100 shadow-lg`}>
+            <div className={`col-3 ${cartProducts.length === 0 ? 'd-none' : ''} position-fixed end-0 cart vh-100 shadow-lg cart-mobile`}>
                 <div className='p-2'>
                     <h1>Carrello</h1>
                 </div>
@@ -20,11 +20,11 @@ const ShoppingCart = () => {
                                     <img src={product.image} className='img-fluid my-1' alt="" />
                                 </div>
                                 <div className='d-flex justify-content-between row'>
-                                    <span>Titolo: {product.name}</span>
+                                    <span className='short-videogame-text'>Titolo: {product.name}</span>
                                     <span>Prezzo: {product.price}&euro;</span>
-                                    {product.offer > 0 && (<span>Sconto: {(product.price * product.offer).toFixed(2)}&euro;</span>)} 
+                                    {product.offer > 0 && (<span>Sconto: {(product.price * product.offer).toFixed(2)}&euro;</span>)}
                                 </div>
-                                <div className='d-flex align-items-center '>
+                                <div className='align-items-center'>
                                     <div className='d-flex'>
                                         <p>Quantità: </p>
                                         <div>
@@ -36,19 +36,18 @@ const ShoppingCart = () => {
                                         </div>
                                     </div>
                                     <div className='pb-2'>
-                                        <button type='button' className='btn btn-danger' onClick={() => removeSingleProduct(product)}>Rimuovi</button>
+                                        <button type='button' className='btn btn-primary-color text-light' onClick={() => removeSingleProduct(product)}>Rimuovi</button>
                                     </div>
                                 </div>
                             </div>
-
                         ))}
-                    </div>
-                </div>
-                <div className='position-fixed bottom-0 z-3 total border-top'>
-                    <div className='py-3 '>
-                        <h3>Spesa Totale: {price}&euro;</h3>
-                        <Link type='button' className='btn btn-success' to='/checkoutpage' onClick={sendCart}>Checkout</Link>
-                        <button type='button' className='btn btn-danger' onClick={clearCart}>Svuota Carrello</button>
+                        <div>
+                            <div className='py-3 total-fixed'>
+                                <h3>Spesa Totale: {price}&euro;</h3>
+                                <Link type='button' className='btn btn-success mb-1 w-100' to='/checkoutpage' onClick={sendCart}>Checkout</Link>
+                                <button type='button' className='btn btn-primary-color text-light mt-1 w-100 short-videogame-text' onClick={clearCart}>Svuota Carrello</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,4 +55,4 @@ const ShoppingCart = () => {
     )
 }
 
-            export default ShoppingCart
+export default ShoppingCart

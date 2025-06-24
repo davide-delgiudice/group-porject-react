@@ -350,3 +350,12 @@ main {
   transform: scale(1.1) rotate(-5deg);
   box-shadow: 0 4px 16px rgba(221, 36, 118, 0.25);
 }
+
+.wish-counter{
+  right: 390px;
+  top: 25px;
+  border-radius: 50%;
+  width: 1.2%;
+  display: flex;
+  justify-content: center;
+}

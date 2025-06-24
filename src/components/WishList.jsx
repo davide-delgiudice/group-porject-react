@@ -13,6 +13,9 @@ const WishList = () => {
     return (
         <>
             <div>
+                <div className='bg-danger position-absolute wish-counter'>
+                    {wishListProducts.length > 0 && wishListProducts.length}
+                </div>
                 <button type='button' className='btn btn-primary' onClick={handleClick}><i className="fa-solid fa-star"></i></button>
 
                 {wishListProducts.length === 0 && showList ?
@@ -36,6 +39,7 @@ const WishList = () => {
                                                 <div className='d-flex justify-content-between row'>
                                                     <span>Titolo: {product.name}</span>
                                                     <span>Prezzo: {product.price}&euro;</span>
+                                                    {product.offer > 0 && (<span>Sconto: {(product.price * product.offer).toFixed(2)}&euro;</span>)}
                                                 </div>
                                                 <div className='d-flex align-items-center '>
                                                     <div className='pb-2'>

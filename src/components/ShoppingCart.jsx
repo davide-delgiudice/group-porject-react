@@ -22,7 +22,7 @@ const ShoppingCart = () => {
                                 <div className='d-flex justify-content-between row'>
                                     <span>Titolo: {product.name}</span>
                                     <span>Prezzo: {product.price}&euro;</span>
-                                    <span>Sconto: {(product.price * product.offer).toFixed(2)}&euro;</span>
+                                    {product.offer > 0 && (<span>Sconto: {(product.price * product.offer).toFixed(2)}&euro;</span>)} 
                                 </div>
                                 <div className='d-flex align-items-center '>
                                     <div className='d-flex'>

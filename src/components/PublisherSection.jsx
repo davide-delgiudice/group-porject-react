@@ -29,7 +29,7 @@ const PublisherSection = () => {
                             {publisher.videogames.slice(0, 3).map((videogame) => (
                                 <div key={`publisherVideogames-${videogame.id}`} className="col-12 col-md-4">
                                     <div>
-                                        <Link className="card" to={`/videogames/${videogame.id}`}>
+                                        <Link className="card" to={`/videogames/${videogame.slug}`}>
                                             <img src={videogame.image} alt={videogame.name} />
                                         </Link>
                                         <div className="mt-2 mb-4 d-flex justify-content-between">

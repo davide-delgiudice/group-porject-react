@@ -65,7 +65,6 @@ const SearchPage = () => {
                 </div>
                 <div className="select-group">
                     <select className="select-gaming" name="select-order" id="select-order" onChange={handleOrder} defaultValue="">
-                        <option value="" disabled>Ordina per</option>
                         <option value="asc">Crescente</option>
                         <option value="desc">Decrescente</option>
                     </select>
@@ -80,7 +79,7 @@ const SearchPage = () => {
                         <div className="row">
                             {videogames.map((videogame) => (
                                 <div key={`videogame-${videogame.id}`} className="col-lg-4 col-md-6 col-sm-12 mb-4">
-                                    <Link to={`/videogames/${videogame.id}`}>
+                                    <Link to={`/videogames/${videogame.slug}`} className="text-decoration-none text-dark">
                                         <div className="card-instant">
                                             <img
                                                 src={videogame.image}

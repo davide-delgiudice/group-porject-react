@@ -18,7 +18,7 @@ function App() {
             <Routes>
               <Route element={<DefaultLayout />}>
                 <Route index element={<HomePage />} />
-                <Route path="/videogames/:id" element={<ProductPage />} />
+                <Route path="/videogames/:slug" element={<ProductPage />} />
                 <Route path="/SearchPage" element={<SearchPage />} />
                 <Route path="/checkoutpage" element={<CheckoutPage />} />
                 <Route path="/success" element={<SuccessPage />} />

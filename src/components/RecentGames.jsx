@@ -35,7 +35,7 @@ const RecentGames = () => {
                         <div className="carousel-inner">
                             {videogames.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)).slice(0, 5).map((videogame, index) => (
                                 <div key={`recentGames-${videogame.id}`} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                                    <Link to={`/videogames/${videogame.id}`}>
+                                    <Link to={`/videogames/${videogame.slug}`}>
                                         <img src={videogame.image} className="d-block w-100" alt={videogame.name} />
                                     </Link>
                                 </div>

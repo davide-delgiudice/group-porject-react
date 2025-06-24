@@ -8,12 +8,12 @@ import AddWishList from '../components/AddWishList'
 
 const ProductPage = () => {
 
-    const { id } = useParams()
+    const { slug } = useParams()
 
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3000/api/videogames/${id}`).then((res) => {
+        axios.get(`http://127.0.0.1:3000/api/videogames/${slug}`).then((res) => {
             setProduct(res.data)
         })
             .catch(err => {

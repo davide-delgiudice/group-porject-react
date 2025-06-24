@@ -30,36 +30,37 @@ const ProductPage = () => {
                             <img src={product.image} alt={product.name} className="card-img-top img-fluid" />
                         )}
                         <div className="card-body">
-                            <h2 className="card-title">{product.name}</h2>
-                            <p className="card-text fs-5 fw-bold text-success">Prezzo: {product.price}€</p>
+                            <h2 className="card-instant-title fs-2">{product.name}</h2>
+                            <p className="card-instant-price">Prezzo: {product.price}€</p>
 
                             <p className="card-text">
-                                <strong>Data di rilascio:</strong>{" "}
-                                {product.release_date ? new Date(product.release_date).toLocaleDateString() : "N/D"}
+                                <strong>Genere:</strong>{" "}
+                                {product.genres?.map((g) => (
+                                    <span key={g.id} className="badge-genre">{g.name}</span>
+                                ))}
+                            </p>
+
+                            <p className="text-date-price fw-bold d-flex">
+                                Data di rilascio:{" "}
+                                <span className='my-0 mx-2 badge-date'>
+                                    {product.release_date ? new Date(product.release_date).toLocaleDateString() : "N/D"}
+                                </span>
                             </p>
 
                             <p className="card-text">
                                 <strong>Piattaforme:</strong>{" "}
                                 {product.platform?.map((p) => (
-                                    <span key={p.id} className="badge bg-secondary me-1">{p.name}</span>
-                                ))}
-                            </p>
-
-                            <p className="card-text">
-                                <strong>Genere:</strong>{" "}
-                                {product.genres?.map((g) => (
-                                    <span key={g.id} className="badge bg-warning text-dark me-1">{g.name}</span>
+                                    <span key={p.id} className="badge-platform">{p.name}</span>
                                 ))}
                             </p>
 
                             <p className="card-text">
                                 <strong>Publisher:</strong>{" "}
                                 {product.publisher?.map((pub) => (
-                                    <span key={pub.id} className="badge bg-info text-dark me-1">{pub.name}</span>
+                                    <span key={pub.id} className="badge-publisher-product">{pub.name}</span>
                                 ))}
                             </p>
-
-                            <div className="d-flex flex-wrap gap-2 mt-4">
+                            <div className="d-flex flex-wrap justify-content-center gap-2 mt-4">
                                 <AddCart product={product} />
                                 <AddWishList product={product} />
                             </div>

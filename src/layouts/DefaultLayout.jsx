@@ -1,27 +1,31 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import Header from "../components/Header";
 import ShoppingCart from "../components/ShoppingCart";
-import { useEffect } from "react";
-import { useCart } from "../contexts/CartContext";
+import { useState } from "react";
 import AddCartAlert from "../components/AddCartAlert";
 
-
 const DefaultLayout = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const location = useLocation();
 
-  const { cartProducts } = useCart()
+  // Nascondi carrello e tasto nella checkoutpage
+  const isCheckoutPage = location.pathname === "/checkoutpage";
 
   return (
     <>
       <div className="d-flex justify-content-center">
         <AddCartAlert />
       </div>
-      <Header />
+      <Header 
+        isCartOpen={isCartOpen} 
+        setIsCartOpen={setIsCartOpen} 
+        showCartToggle={!isCheckoutPage} 
+      />
       <main className="d-flex justify-content-between">
         <div className="w-100">
           <Outlet />
         </div>
-        
-          <ShoppingCart />
+        {!isCheckoutPage && isCartOpen && <ShoppingCart />}
       </main>
     </>
   );

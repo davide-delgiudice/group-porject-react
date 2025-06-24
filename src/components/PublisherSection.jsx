@@ -33,7 +33,7 @@ const PublisherSection = () => {
                                             <img src={videogame.image} alt={videogame.name} />
                                         </Link>
                                         <div className="mt-2 mb-4 d-flex justify-content-between">
-                                            <p className="text-light publisher-videogame-text">{videogame.name}</p>
+                                            <p className="text-light short-videogame-text">{videogame.name}</p>
                                             <p className="text-light fw-bold">{videogame.price}&euro;</p>
                                         </div>
                                     </div>

@@ -3,31 +3,49 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import AddCart from '../components/AddCart';
-import { useLocation } from 'react-router-dom';
-import { end } from '@popperjs/core';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import AddWishList from '../components/AddWishList';
+
 
 const SearchPage = () => {
 
     const location = useLocation();
-    const [videogames, setVideogames] = useState([]);
-    const [sort, setSort] = useState("");
-    const [order, setOrder] = useState("");
-    const queryParams = new URLSearchParams(location.search)
+    const queryParams = new URLSearchParams(location.search);
+    const navigate = useNavigate();
+
     const query = queryParams.get("q") || "";
     const offer = queryParams.get("offer") === "true";
+
+    const [videogames, setVideogames] = useState([]);
+    const [sort, setSort] = useState(queryParams.get("sort") || "");
+    const [order, setOrder] = useState(queryParams.get("order") || "asc");
+
     const { cartProducts, removeFromCart, addToCart } = useCart()
     const cart = JSON.parse(localStorage.getItem("cart")) || {}
-
-
     const endpoint = "http://localhost:3000/api/videogames/"
+
+    const updateQueryParams = (updatedOrder, updatedSort) => {
+        const params = new URLSearchParams(location.search);
+
+        updatedSort ? params.set("sort", updatedSort) : params.delete("sort");
+        updatedOrder ? params.set("order", updatedOrder) : params.delete("order");
+        navigate({
+            pathname: location.pathname,
+            search: params.toString(),
+        }, { replace: true })
+    };
+
 
     const handleSort = (e) => {
         setSort(e.target.value);
+        updateQueryParams(e.target.value, sort);
+
     };
     const handleOrder = (e) => {
         setOrder(e.target.value);
+        updateQueryParams(e.target.value, order);
+
     };
 
     useEffect(() => {
@@ -95,7 +113,9 @@ const SearchPage = () => {
                                                         </span>
                                                     )}
                                                 </div>
-                                                <div className="card-instant-price">{videogame.price}€</div>
+                                                <div className="card-instant-price">
+                                                    {videogame.offer ? (videogame.price * (1 - videogame.offer)).toFixed(2) : videogame.price}€
+                                                </div>
                                                 <div className="card-instant-publisher">{videogame.publisher?.name || "Editore sconosciuto"}</div>
                                                 <div className="card-instant-badges">
                                                     <span className="badge-genre">{videogame.genres?.[0]?.name || "Genere non disponibile"}</span>

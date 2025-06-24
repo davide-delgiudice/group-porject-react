@@ -88,7 +88,14 @@ const SearchPage = () => {
                                                 className="card-instant-img"
                                             />
                                             <div className="card-instant-body">
-                                                <div className="card-instant-title">{videogame.name}</div>
+                                                <div className="d-flex">
+                                                    <div className="card-instant-title">{videogame.name}</div>
+                                                    {videogame.offer !== null && (
+                                                        <span className="badge-offer ms-2 align-self-center">
+                                                            -{(videogame.offer * 100).toFixed(0)}%
+                                                        </span>
+                                                    )}
+                                                </div>
                                                 <div className="card-instant-price">{videogame.price}€</div>
                                                 <div className="card-instant-publisher">{videogame.publisher?.name || "Editore sconosciuto"}</div>
                                                 <div className="card-instant-badges">
@@ -114,6 +121,7 @@ const SearchPage = () => {
                                                         <div className={`${cart[videogame.id]?.quantity > 0 ? 'd-none' : ''}`}>
                                                             <AddCart product={videogame} />
                                                         </div>
+
                                                     )}
                                                     <div>
                                                         <AddWishList product={videogame} />

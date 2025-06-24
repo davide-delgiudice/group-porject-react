@@ -4,16 +4,19 @@
   box-sizing: border-box;
 }
 
+main {
+  color: white;
+}
+
 body {
   background-color: #1A2730;
 }
-
-
 
 a {
   text-decoration: none;
 }
 
+/* header */
 
 header {
   position: sticky;
@@ -21,21 +24,46 @@ header {
   z-index: 5;
 }
 
+@media (max-width: 769px) {
+  .navbar .container-fluid {
+    text-align: center;
+    justify-content: center;
+  }
+}
 
 .navbar {
   background-color: #424048;
   padding: 0px;
 }
 
-
 .logo-design {
   width: 80px;
 }
 
-
-.btn-color {
+.btn-all-color {
   background-color: #E95D2C;
 }
+
+.btn-all-color:hover {
+  background-color: #A63E1B;
+}
+
+@media (min-width: 376px) and (max-width: 426px) {
+  .btn-offer-color {
+    margin-left: 0 !important;
+    margin-top: 10px;
+  }
+}
+
+.btn-offer-color {
+  background-color: #45586C;
+}
+
+.btn-offer-color:hover {
+  background-color: #424048;
+}
+
+/* herospace */
 
 .herospace {
   background-image: url("./assets/herospace.png");
@@ -44,20 +72,20 @@ header {
   background-color: #1A2730;
 }
 
-@media (max-width: 374px) {
+@media (max-width: 376px) {
   .herospace {
     background-image: none;
   }
 
-  .col-6.col-override-320 {
+  .col-6.col-override-375 {
     flex: 100%;
     text-align: center;
   }
 }
 
-@media (min-width: 375px) and (max-width: 424px) {
-  .col-6.col-override-375 {
-    width: 75%;
+@media (min-width: 376px) and (max-width: 426px) {
+  .col-6.col-override-425 {
+    width: 70%;
   }
 }
 
@@ -77,6 +105,7 @@ header {
   border-radius: 10px;
 }
 
+/* publisher */
 
 .publisher-videogame-text {
   overflow: hidden;
@@ -84,11 +113,16 @@ header {
   white-space: nowrap;
 }
 
+/* wishlist */
 
-main {
-  color: white;
+.btn-wish {
+  background-color: #E95D2C !important;
+  border-color: transparent !important ;
 }
 
+.btn-primary:hover {
+  background-color: #A63E1B !important;
+}
 
 
 /* ////////////////////////////////////
@@ -132,6 +166,12 @@ main {
   box-shadow: 0 0 12px #3ed24b;
 }
 
+@media (max-width: 376px) {
+  .btn-search{
+      width: 60%;
+  }
+}
+
 .btn-search {
   background-color: #E95D2C;
   border: none;
@@ -146,7 +186,7 @@ main {
 }
 
 .btn-search:hover {
-  background-color: #a52727;
+  background-color: #A63E1B;
 }
 
 .card-instant {
@@ -313,14 +353,38 @@ main {
   border-radius: 10px;
 }
 
-.wishlist {
-  background-color: #1A2730;
-  color: white;
-  right: 300px;
+.wishlist-wrapper {
+  position: relative;
+}
+
+/* Stile di base per la wishlist */
+.wishlist-modal {
+  position: absolute;
+  right: 0;
   top: 80px;
-  width: 15%;
+  background-color: #45586C;
+  color: white;
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1050;
+  border-radius: 10px;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.404);
 }
+
+/* Mobile: centra al centro dello schermo */
+@media (max-width: 576px) {
+  .wishlist-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-height: 80vh;
+    z-index: 1050;
+  }
+}
+
 
 .total {
   border-top: 1px solid white;

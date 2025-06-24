@@ -40,26 +40,26 @@ header {
   width: 80px;
 }
 
-.btn-all-color {
+.btn-primary-color {
   background-color: #E95D2C;
 }
 
-.btn-all-color:hover {
+.btn-primary-color:hover {
   background-color: #A63E1B;
 }
 
 @media (min-width: 376px) and (max-width: 426px) {
-  .btn-offer-color {
+  .btn-secondary-color {
     margin-left: 0 !important;
     margin-top: 10px;
   }
 }
 
-.btn-offer-color {
+.btn-secondary-color {
   background-color: #45586C;
 }
 
-.btn-offer-color:hover {
+.btn-secondary-color:hover {
   background-color: #424048;
 }
 
@@ -127,16 +127,6 @@ header {
 
 /* ////////////////////////////////////
 ////////////SEARCHPAGE////////////// */
-
-.page-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: hsl(120, 41%, 25%);
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  text-align: center;
-}
 
 .search-form {
   max-width: 500px;
@@ -229,7 +219,7 @@ header {
 .card-instant-price {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #3ed24b;
+  color: #75b3dc;
   margin-bottom: 10px;
 }
 
@@ -257,9 +247,9 @@ header {
 }
 
 .badge-platform {
-  color: #3ed24b;
+  color: #75b3dc;
   background: #23272b;
-  border: 1px solid #3ed24b;
+  border: 1px solid #75b3dc;
 }
 
 .global-alert {
@@ -268,6 +258,17 @@ header {
 
 .scrollable {
   height: 71vh;
+}
+
+/* add wishlist */
+
+.btn-success, .btn-change-success {
+  background-color: #45586C;
+  border: #45586C;
+}
+
+.btn-success:hover{
+  background-color: #424048;
 }
 
 /* /////////////////////////////////

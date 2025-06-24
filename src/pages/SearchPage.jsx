@@ -44,7 +44,6 @@ const SearchPage = () => {
                 data = data.filter(videogame => videogame.offer !== null)
             }
             setVideogames(data);
-            console.log(data);
         })
             .catch((err) => {
                 console.log(err);
@@ -89,7 +88,7 @@ const SearchPage = () => {
                                             />
                                             <div className="card-instant-body">
                                                 <div className="d-flex">
-                                                    <div className="card-instant-title">{videogame.name}</div>
+                                                    <div className="card-instant-title publisher-videogame-text">{videogame.name}</div>
                                                     {videogame.offer !== null && (
                                                         <span className="badge-offer ms-2 align-self-center">
                                                             -{(videogame.offer * 100).toFixed(0)}%
@@ -98,7 +97,7 @@ const SearchPage = () => {
                                                 </div>
                                                 <div className="card-instant-price">{videogame.price}€</div>
                                                 <div className="card-instant-publisher">{videogame.publisher?.name || "Editore sconosciuto"}</div>
-                                                <div className="card-instant-badges">
+                                                <div className="card-instant-badges publisher-videogame-text">
                                                     <span className="badge-genre">{videogame.genres?.[0]?.name || "Genere non disponibile"}</span>
                                                     {videogame.platforms?.map((v, idx) => (
                                                         <span key={idx} className="badge-platform">{v.name}</span>

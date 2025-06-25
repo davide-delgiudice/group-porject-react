@@ -17,7 +17,7 @@ const SuccessPage = () => {
       </div>
 
       <div className="text-center mt-4">
-        <Link className="btn btn-primary" to="/SearchPage">
+        <Link className="btn btn-primary-color text-light" to="/SearchPage">
           Continua a navigare
         </Link>
       </div>

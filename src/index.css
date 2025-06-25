@@ -382,7 +382,7 @@ header {
   }
 
   .shopping-cart {
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 290px);
     overflow-y: auto;
   }
 

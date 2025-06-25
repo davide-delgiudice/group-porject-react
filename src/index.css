@@ -358,6 +358,7 @@ header {
 
 .cart {
   background-color: #31495a;
+  z-index: 6;
 }
 
 .cart-img {
@@ -376,7 +377,7 @@ header {
 
 @media (max-width: 426px) {
   .cart-mobile {
-    width: 40%;
+    width: 100%;
     height: calc(100vh - 70px);
   }
 
